@@ -34,24 +34,26 @@ const Dashboard = () => {
         <div className="lg:col-span-3 space-y-6">
           {/* Profile Card */}
           <div className="bg-card rounded-3xl border border-border p-6 shadow-soft text-center relative overflow-hidden animate-fade-in group hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300">
-            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-br from-primary/20 to-primary/5"></div>
-            <div className="relative mx-auto w-24 h-24 rounded-full bg-background border-4 border-background shadow-md flex items-center justify-center mb-4 mt-4 transition-transform duration-500 group-hover:rotate-[360deg]">
-              <span className="text-3xl">🐱</span>
-              <div className="absolute -bottom-2 -right-2 bg-warning text-warning-foreground text-xs font-bold px-2 py-1 rounded-full border-2 border-background">
+            <div className="absolute top-0 left-0 w-full h-24 bg-gradient-to-br from-primary/30 to-[#ff6b9d]/20"></div>
+            <div className="relative mx-auto w-24 h-24 rounded-full bg-white p-1 shadow-md mb-4 mt-4 transition-transform duration-500 group-hover:scale-105">
+              <div className="w-full h-full rounded-full bg-primary/10 flex items-center justify-center border-2 border-dashed border-primary/40 group-hover:border-primary/60 transition-colors">
+                <span className="text-4xl text-primary animate-bounce-slight">🐱</span>
+              </div>
+              <div className="absolute -bottom-2 right-0 bg-warning text-warning-foreground text-xs font-black px-3 py-1 rounded-full border-2 border-background shadow-sm">
                 Lvl. 12
               </div>
             </div>
-            <h2 className="text-xl font-bold text-foreground">{user.name}</h2>
-            <p className="text-primary font-medium text-sm mb-4">{user.level}</p>
-            <div className="flex justify-between items-center bg-muted/50 rounded-2xl p-3">
+            <h2 className="text-xl font-extrabold text-foreground">{user.name}</h2>
+            <p className="text-primary font-bold text-sm mb-5 opacity-90">{user.level}</p>
+            <div className="flex justify-center gap-6 items-center bg-muted/40 rounded-2xl p-4 border border-border/50">
               <div className="text-center">
-                <p className="text-xs text-muted-foreground">Theo dõi</p>
-                <p className="font-bold text-foreground">128</p>
+                <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Đang theo dõi</p>
+                <p className="font-black text-foreground text-lg">128</p>
               </div>
-              <div className="w-[1px] h-8 bg-border"></div>
+              <div className="w-[1px] h-10 bg-border"></div>
               <div className="text-center">
-                <p className="text-xs text-muted-foreground">Người TD</p>
-                <p className="font-bold text-foreground">342</p>
+                <p className="text-[11px] uppercase tracking-wider text-muted-foreground font-semibold mb-1">Người theo dõi</p>
+                <p className="font-black text-foreground text-lg">342</p>
               </div>
             </div>
           </div>
