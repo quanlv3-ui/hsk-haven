@@ -40,7 +40,7 @@ const QuizSetup = () => {
               ))}
             </div>
           </div>
-          <button onClick={() => navigate("/practice/quiz/1")} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-semibold min-h-[44px]">Bắt đầu kiểm tra</button>
+          <button onClick={() => navigate("/practice/quiz/1")} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-semibold min-h-[44px] hover:shadow-lg hover:-translate-y-1 hover:scale-[1.02] active:scale-95 transition-all duration-300">Bắt đầu kiểm tra</button>
         </div>
       </div>
     </div>
@@ -86,7 +86,7 @@ const QuizPlay = () => {
 
             <div className="mt-8 space-y-3">
               {q.options.map((opt, i) => {
-                let cls = "bg-card border-border text-foreground hover:border-muted-foreground/50";
+                let cls = "bg-card border-border text-foreground hover:border-primary/40 hover:shadow-md hover:-translate-y-1 hover:scale-[1.01] active:scale-95";
                 if (selected !== null) {
                   if (i === q.correct) cls = "bg-success/5 border-success text-success";
                   else if (i === selected && i !== q.correct) cls = "bg-destructive/5 border-destructive text-destructive";
@@ -162,9 +162,9 @@ const QuizResults = () => {
         )}
 
         <div className="space-y-3">
-          <button onClick={() => navigate("/study/flashcard")} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-semibold">Ôn lại từ sai</button>
-          <button onClick={() => navigate("/practice/quiz/1")} className="w-full border border-primary text-primary py-3 rounded-xl font-semibold">Làm lại</button>
-          <button onClick={() => navigate("/dashboard")} className="w-full text-sm text-muted-foreground py-2">Về trang chủ</button>
+          <button onClick={() => navigate("/study/flashcard")} className="w-full bg-primary text-primary-foreground py-3 rounded-xl font-semibold hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300">Ôn lại từ sai</button>
+          <button onClick={() => navigate("/practice/quiz/1")} className="w-full border border-primary text-primary py-3 rounded-xl font-semibold hover:bg-primary/5 hover:shadow-md hover:-translate-y-1 active:scale-95 transition-all duration-300">Làm lại</button>
+          <button onClick={() => navigate("/dashboard")} className="w-full text-sm text-muted-foreground py-2 hover:text-foreground transition-colors">Về trang chủ</button>
         </div>
       </div>
     </div>

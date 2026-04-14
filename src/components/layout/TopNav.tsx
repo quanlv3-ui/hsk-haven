@@ -33,7 +33,7 @@ const TopNav = () => {
               <button
                 key={path}
                 onClick={() => navigate(path)}
-                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all duration-300 hover:scale-[1.05] hover:-translate-y-0.5 active:scale-95 ${
                   isActive
                     ? "bg-primary/10 text-primary shadow-soft"
                     : "text-muted-foreground hover:text-foreground hover:bg-muted"

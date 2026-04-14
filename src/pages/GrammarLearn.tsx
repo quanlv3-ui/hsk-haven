@@ -33,27 +33,29 @@ const GrammarLearn = () => {
           {!selectedLesson ? (
             <motion.div key="list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-3">
               {grammarLessons.map((g, i) => (
-                <motion.button
+                <motion.div
                   key={g.id}
-                  onClick={() => { setSelectedLesson(g.id); setShowResult(null); setExerciseAnswer(""); }}
-                  className="w-full bg-card rounded-2xl border border-border p-4 text-left shadow-soft hover:shadow-soft-lg active:scale-[0.98] transition-all duration-300"
-                  whileHover={{ y: -2 }}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.05 }}
                 >
-                  <div className="flex items-center justify-between">
-                    <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <HSKBadge level={g.hskLevel} />
-                        <span className="text-xs text-muted-foreground">Bài {g.id}</span>
+                  <button
+                    onClick={() => { setSelectedLesson(g.id); setShowResult(null); setExerciseAnswer(""); }}
+                    className="w-full bg-card rounded-2xl border border-border p-4 text-left shadow-soft hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] active:scale-95 transition-all duration-300 group"
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex-1">
+                        <div className="flex items-center gap-2 mb-1">
+                          <HSKBadge level={g.hskLevel} />
+                          <span className="text-xs text-muted-foreground group-hover:text-primary transition-colors">Bài {g.id}</span>
+                        </div>
+                        <p className="text-sm font-semibold text-foreground">{g.title}</p>
+                        <p className="text-xs text-muted-foreground font-hanzi mt-0.5">{g.structure}</p>
                       </div>
-                      <p className="text-sm font-semibold text-foreground">{g.title}</p>
-                      <p className="text-xs text-muted-foreground font-hanzi mt-0.5">{g.structure}</p>
+                      <ChevronRight size={16} className="text-muted-foreground group-hover:translate-x-1 transition-transform" />
                     </div>
-                    <ChevronRight size={16} className="text-muted-foreground" />
-                  </div>
-                </motion.button>
+                  </button>
+                </motion.div>
               ))}
             </motion.div>
           ) : lesson ? (

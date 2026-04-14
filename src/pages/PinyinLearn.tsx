@@ -56,11 +56,10 @@ const PinyinLearn = () => {
             >
               <p className="text-sm text-muted-foreground">Tiếng Trung có 4 thanh chính + 1 thanh nhẹ. Thanh điệu thay đổi hoàn toàn nghĩa của từ!</p>
               {pinyinTones.map((tone) => (
-                <motion.button
+                <button
                   key={tone.tone}
                   onClick={() => setSelectedTone(selectedTone === tone.tone ? null : tone.tone)}
-                  className="w-full bg-card rounded-2xl border border-border p-4 text-left shadow-soft hover:shadow-soft-lg active:scale-[0.98] transition-all duration-300"
-                  whileHover={{ y: -2 }}
+                  className="w-full bg-card rounded-2xl border border-border p-4 text-left shadow-soft hover:shadow-xl hover:-translate-y-1 hover:border-primary/40 active:scale-95 transition-all duration-300 group"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -94,7 +93,7 @@ const PinyinLearn = () => {
                       </motion.div>
                     )}
                   </AnimatePresence>
-                </motion.button>
+                </button>
               ))}
             </motion.div>
           )}
@@ -110,17 +109,16 @@ const PinyinLearn = () => {
               <p className="text-sm text-muted-foreground">21 phụ âm đầu trong tiếng Trung. Nhấn để nghe và xem ví dụ.</p>
               <div className="grid grid-cols-3 gap-2">
                 {pinyinInitials.map((item) => (
-                  <motion.button
+                  <button
                     key={item.letter}
                     onClick={() => setSelectedInitial(selectedInitial === item.letter ? null : item.letter)}
-                    className={`bg-card rounded-2xl border p-3 text-center shadow-soft hover:shadow-soft-lg active:scale-95 transition-all duration-300 ${
-                      selectedInitial === item.letter ? "border-primary bg-primary/5" : "border-border"
+                    className={`bg-card rounded-2xl border p-3 text-center shadow-soft hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 ${
+                      selectedInitial === item.letter ? "border-primary bg-primary/5" : "border-border hover:border-primary/40"
                     }`}
-                    whileHover={{ y: -2 }}
                   >
                     <p className="text-xl font-bold text-foreground">{item.letter}</p>
                     <p className="text-xs text-muted-foreground mt-0.5 font-hanzi">{item.example}</p>
-                  </motion.button>
+                  </button>
                 ))}
               </div>
 

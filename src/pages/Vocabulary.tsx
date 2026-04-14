@@ -39,15 +39,15 @@ const Vocabulary = () => {
 
         <div className="space-y-2">
           {filtered.map((v) => (
-            <button key={v.id} onClick={() => navigate(`/vocabulary/${v.id}`)} className="w-full bg-card rounded-xl border border-border p-4 flex items-center gap-3 hover:shadow-sm transition-shadow text-left min-h-[56px]">
-              <span className="hanzi-small text-foreground w-14">{v.hanzi}</span>
+            <button key={v.id} onClick={() => navigate(`/vocabulary/${v.id}`)} className="w-full bg-card rounded-xl border border-border p-4 flex items-center gap-3 hover:shadow-md hover:-translate-y-1 hover:border-primary/40 active:scale-95 transition-all duration-300 text-left min-h-[56px] group">
+              <span className="hanzi-small text-foreground w-14 group-hover:text-primary transition-colors">{v.hanzi}</span>
               <div className="flex-1 min-w-0">
                 <p className="text-sm text-muted-foreground">{v.pinyin}</p>
                 <p className="text-sm text-foreground truncate">{v.meaning}</p>
               </div>
               <HSKBadge level={v.hskLevel} />
               <span className={`text-xs font-semibold px-2 py-0.5 rounded-full ${statusLabels[v.status].cls}`}>{statusLabels[v.status].label}</span>
-              <Volume2 size={16} className="text-muted-foreground flex-shrink-0" />
+              <Volume2 size={16} className="text-muted-foreground flex-shrink-0 group-hover:scale-110 group-hover:text-primary transition-all duration-300" />
             </button>
           ))}
         </div>

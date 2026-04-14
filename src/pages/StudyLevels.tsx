@@ -9,7 +9,7 @@ const StudyLevels = () => {
   const renderCard = (l: typeof hskLevels[0]) => {
     const locked = !l.unlocked;
     return (
-      <div key={String(l.level)} className={`bg-card rounded-2xl border border-border p-5 relative ${locked ? "opacity-50" : ""}`}>
+      <div key={String(l.level)} className={`bg-card rounded-2xl border border-border p-5 relative transition-all duration-300 ${locked ? "opacity-50" : "hover:shadow-xl hover:-translate-y-1 hover:border-primary/40 cursor-pointer"}`}>
         {locked && <div className="absolute inset-0 flex items-center justify-center z-10"><Lock size={24} className="text-muted-foreground" /></div>}
         <div className="flex items-center gap-2">
           <span className="text-white text-xs font-bold px-2.5 py-0.5 rounded-full" style={{ backgroundColor: l.color }}>HSK {l.level}</span>

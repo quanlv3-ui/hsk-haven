@@ -44,7 +44,7 @@ const StudyComplete = () => {
             { icon: Target, label: "Làm quiz HSK 3", path: "/practice/quiz/setup" },
             { icon: AlertTriangle, label: "Xem từ hay quên", path: "/progress" },
           ].map(({ icon: Icon, label, path }) => (
-            <button key={path} onClick={() => navigate(path)} className="w-full bg-card rounded-xl border border-border p-4 flex items-center gap-3 hover:shadow-sm transition-shadow">
+            <button key={path} onClick={() => navigate(path)} className="w-full bg-card rounded-xl border border-border p-4 flex items-center gap-3 hover:shadow-md hover:-translate-y-1 hover:border-primary/40 active:scale-95 transition-all duration-300">
               <Icon size={20} className="text-primary" />
               <span className="text-sm font-medium text-foreground">{label}</span>
             </button>
@@ -56,10 +56,10 @@ const StudyComplete = () => {
         </button>
 
         {user.plan === "free" && (
-          <div className="mt-8 bg-primary/5 border border-primary/20 rounded-xl p-4 text-sm">
+          <div className="mt-8 bg-primary/5 border border-primary/20 rounded-xl p-4 text-sm mt-8 transition-all hover:bg-primary/10">
             <p className="font-semibold text-foreground">Bạn đã hoàn thành HSK 3! 🎉</p>
             <p className="text-muted-foreground mt-1">Khám phá HSK 4 với Plus plan</p>
-            <button onClick={() => navigate("/subscription")} className="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-semibold">Xem Plus</button>
+            <button onClick={() => navigate("/subscription")} className="mt-3 bg-primary text-primary-foreground px-4 py-2 rounded-lg text-sm font-bold hover:shadow-lg hover:-translate-y-1 active:scale-95 transition-all duration-300">Xem Plus</button>
           </div>
         )}
       </motion.div>

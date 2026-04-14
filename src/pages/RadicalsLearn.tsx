@@ -48,7 +48,7 @@ const RadicalsLearn = () => {
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 active:scale-95 ${
+              className={`whitespace-nowrap px-3 py-1.5 rounded-xl text-xs font-medium transition-all duration-300 hover:-translate-y-0.5 hover:shadow-sm active:scale-95 ${
                 activeCategory === cat
                   ? "bg-primary text-primary-foreground shadow-soft"
                   : "bg-card border border-border text-muted-foreground hover:text-foreground hover:border-primary/30"
@@ -62,43 +62,48 @@ const RadicalsLearn = () => {
         {/* Grid */}
         <div className="grid grid-cols-2 gap-3 animate-fade-in" style={{ animationDelay: "0.15s" }}>
           {filtered.map((r, i) => (
-            <motion.button
-              key={r.id}
-              onClick={() => setExpandedId(expandedId === r.id ? null : r.id)}
-              className={`bg-card rounded-2xl border p-4 text-left shadow-soft hover:shadow-soft-lg active:scale-[0.97] transition-all duration-300 ${
-                expandedId === r.id ? "border-primary col-span-2" : "border-border"
-              }`}
-              whileHover={{ y: -2 }}
+            <motion.div
               layout
+              key={r.id}
+              className={expandedId === r.id ? "col-span-2" : ""}
             >
-              <div className="flex items-center gap-3">
-                <span className="hanzi-small text-foreground">{r.radical}</span>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-foreground">{r.meaning}</p>
-                  <p className="text-xs text-muted-foreground">{r.pinyin} · {r.strokeCount} nét</p>
+              <div
+                role="button"
+                tabIndex={0}
+                onClick={() => setExpandedId(expandedId === r.id ? null : r.id)}
+                className={`w-full h-full bg-card rounded-2xl border p-4 text-left shadow-soft hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] active:scale-95 transition-all duration-300 ${
+                  expandedId === r.id ? "border-primary" : "border-border"
+                }`}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="hanzi-small text-foreground">{r.radical}</span>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-semibold text-foreground">{r.meaning}</p>
+                    <p className="text-xs text-muted-foreground">{r.pinyin} · {r.strokeCount} nét</p>
+                  </div>
                 </div>
-              </div>
-
-              <AnimatePresence>
-                {expandedId === r.id && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="mt-3 pt-3 border-t border-border">
-                      <p className="text-xs text-muted-foreground mb-2">Ví dụ chữ chứa bộ {r.radical}:</p>
-                      <div className="flex gap-2 flex-wrap">
-                        {r.examples.map((ex) => (
-                          <span key={ex} className="hanzi-display text-lg px-3 py-1 rounded-xl bg-primary/10 text-primary">{ex}</span>
-                        ))}
+  
+                <AnimatePresence>
+                  {expandedId === r.id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="mt-3 pt-3 border-t border-border">
+                        <p className="text-xs text-muted-foreground mb-2">Ví dụ chữ chứa bộ {r.radical}:</p>
+                        <div className="flex gap-2 flex-wrap">
+                          {r.examples.map((ex) => (
+                            <span key={ex} className="hanzi-display text-lg px-3 py-1 rounded-xl bg-primary/10 text-primary">{ex}</span>
+                          ))}
+                        </div>
                       </div>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

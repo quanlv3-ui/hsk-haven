@@ -40,7 +40,7 @@ const WritingPractice = () => {
       {!isLocked && (
         <div className="p-4 pb-8 flex gap-3 justify-center">
           {["▶ Xem animation", "Kiểm tra", "Xóa", "Gợi ý"].map((b) => (
-            <button key={b} className="bg-card border border-border px-4 py-2.5 rounded-xl text-sm font-medium text-foreground">{b}</button>
+            <button key={b} className="bg-card border border-border px-4 py-2.5 rounded-xl text-sm font-medium text-foreground hover:bg-muted hover:shadow-md hover:-translate-y-1 active:scale-95 transition-all duration-300">{b}</button>
           ))}
         </div>
       )}

@@ -62,13 +62,11 @@ const ListeningPractice = () => {
         <AnimatePresence mode="wait">
           <motion.div key={currentQ} initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -30 }} className="space-y-5">
             <div className="bg-card rounded-3xl border border-border p-8 text-center shadow-soft">
-              <motion.button
-                className="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 active:scale-90 transition-all duration-300"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.9 }}
+              <button
+                className="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center hover:bg-primary/20 hover:scale-110 hover:shadow-lg active:scale-95 transition-all duration-300 group"
               >
-                <Headphones size={32} className="text-primary" />
-              </motion.button>
+                <Headphones size={32} className="text-primary group-hover:scale-110 transition-transform duration-300" />
+              </button>
               <p className="text-sm text-muted-foreground mt-4">
                 {q.type === "word" ? "Nghe từ và chọn chữ Hán đúng" : "Nghe câu và chọn nghĩa đúng"}
               </p>
@@ -80,20 +78,19 @@ const ListeningPractice = () => {
                 const isCorrect = q.correct === i;
                 const isSelected = selected === i;
                 return (
-                  <motion.button
+                  <button
                     key={i}
                     onClick={() => handleSelect(i)}
                     className={`w-full p-4 rounded-2xl border text-left transition-all duration-300 active:scale-[0.98] ${
                       showResult && isCorrect ? "bg-success/10 border-success shadow-soft" :
                       showResult && isSelected && !isCorrect ? "bg-destructive/10 border-destructive" :
-                      "bg-card border-border hover:border-primary/30 hover:shadow-soft"
+                      "bg-card border-border hover:border-primary/40 hover:shadow-md hover:-translate-y-1 hover:scale-[1.01]"
                     }`}
-                    whileHover={!showResult ? { x: 4 } : {}}
                   >
                     <span className={`text-sm font-medium ${q.type === "word" ? "font-hanzi text-lg" : ""}`}>{opt}</span>
                     {showResult && isCorrect && <Check size={18} className="inline ml-2 text-success" />}
                     {showResult && isSelected && !isCorrect && <X size={18} className="inline ml-2 text-destructive" />}
-                  </motion.button>
+                  </button>
                 );
               })}
             </div>

@@ -39,11 +39,11 @@ const BottomNav = () => {
             <button
               key={path}
               onClick={() => navigate(path)}
-              className={`flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] transition-colors ${
-                isActive ? "text-primary" : "text-muted-foreground"
+              className={`flex flex-col items-center justify-center gap-0.5 min-w-[64px] min-h-[44px] transition-all duration-300 hover:-translate-y-1 hover:scale-[1.05] active:scale-95 group ${
+                isActive ? "text-primary" : "text-muted-foreground hover:text-primary/70"
               }`}
             >
-              <Icon size={22} />
+              <Icon size={22} className="group-hover:animate-bounce-in" />
               <span className="text-[11px] font-medium">{label}</span>
             </button>
           );

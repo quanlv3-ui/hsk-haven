@@ -99,6 +99,19 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
+
+  /* Global Bouncy Animations for all clickable elements */
+  button, a[href], [role="button"] {
+    @apply transition-all duration-300;
+  }
+  
+  button:not(:disabled):hover, a[href]:hover, [role="button"]:hover {
+    @apply -translate-y-[2px]; /* Subtle bounce up */
+  }
+  
+  button:not(:disabled):active, a[href]:active, [role="button"]:active {
+    @apply scale-[0.97] translate-y-0; /* Tactile press */
+  }
 }
 
 @layer components {

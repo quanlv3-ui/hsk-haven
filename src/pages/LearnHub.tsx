@@ -45,13 +45,12 @@ const LearnHub = () => {
             <h2 className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">{section.title}</h2>
             <div className="space-y-2">
               {section.items.map((item) => (
-                <motion.button
+                <button
                   key={item.path}
                   onClick={() => navigate(item.path)}
-                  className="w-full bg-card rounded-2xl border border-border p-4 flex items-center gap-4 shadow-soft hover:shadow-soft-lg active:scale-[0.98] transition-all duration-300"
-                  whileHover={{ y: -2, x: 2 }}
+                  className="w-full bg-card rounded-2xl border border-border p-4 flex items-center gap-4 shadow-soft hover:shadow-xl hover:-translate-y-1.5 hover:border-primary/40 active:scale-95 transition-all duration-300 group"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                  <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
                     <item.icon size={22} className={item.color} />
                   </div>
                   <div className="flex-1 text-left min-w-0">
@@ -64,7 +63,7 @@ const LearnHub = () => {
                     <p className="text-xs text-muted-foreground mt-0.5">{item.desc}</p>
                   </div>
                   <ChevronRight size={16} className="text-muted-foreground flex-shrink-0" />
-                </motion.button>
+                </button>
               ))}
             </div>
           </div>

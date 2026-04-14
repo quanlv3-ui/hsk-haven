@@ -61,7 +61,7 @@ const FlashcardStudy = () => {
                 onClick={() => !isFlipped && setIsFlipped(true)}
               >
                 <motion.div
-                  className="w-full bg-card rounded-3xl border border-border shadow-lg p-8"
+                  className="w-full bg-card rounded-3xl border border-border shadow-lg hover:shadow-2xl hover:border-primary/30 p-8 transition-shadow duration-300"
                   animate={{ rotateY: isFlipped ? 180 : 0 }}
                   transition={{ duration: 0.4 }}
                   style={{ transformStyle: "preserve-3d", minHeight: "360px" }}
@@ -71,10 +71,10 @@ const FlashcardStudy = () => {
                     <p className="hanzi-large text-foreground">{card.hanzi}</p>
                     {showPinyin && <p className="mt-3 text-lg text-muted-foreground">{card.pinyin}</p>}
                     <div className="flex gap-3 mt-6">
-                      <button onClick={(e) => { e.stopPropagation(); setShowPinyin(!showPinyin); }} className="min-w-[44px] min-h-[44px] rounded-full bg-muted flex items-center justify-center hover:bg-accent transition-colors">
+                      <button onClick={(e) => { e.stopPropagation(); setShowPinyin(!showPinyin); }} className="min-w-[44px] min-h-[44px] rounded-full bg-muted flex items-center justify-center hover:bg-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300">
                         {showPinyin ? <EyeOff size={18} /> : <Eye size={18} />}
                       </button>
-                      <button onClick={(e) => e.stopPropagation()} className="min-w-[44px] min-h-[44px] rounded-full bg-muted flex items-center justify-center hover:bg-accent transition-colors">
+                      <button onClick={(e) => e.stopPropagation()} className="min-w-[44px] min-h-[44px] rounded-full bg-muted flex items-center justify-center hover:bg-accent hover:-translate-y-1 hover:shadow-md active:scale-95 transition-all duration-300">
                         <Volume2 size={18} />
                       </button>
                     </div>
@@ -106,7 +106,7 @@ const FlashcardStudy = () => {
           className="p-4 pb-8 grid grid-cols-4 gap-2 max-w-md mx-auto w-full"
         >
           {ratings.map((r) => (
-            <button key={r.label} onClick={handleRate} className={`${r.bg} ${r.text} border ${r.border} rounded-xl py-3 flex flex-col items-center gap-1 min-h-[56px] hover:opacity-80 transition-opacity`}>
+            <button key={r.label} onClick={handleRate} className={`${r.bg} ${r.text} border ${r.border} rounded-xl py-3 flex flex-col items-center gap-1 min-h-[56px] hover:scale-[1.03] hover:-translate-y-1 active:scale-95 shadow-sm hover:shadow-md transition-all duration-300`}>
               <span className="text-sm font-semibold">{r.label}</span>
               <span className="text-[10px] opacity-60">{r.interval}</span>
             </button>
