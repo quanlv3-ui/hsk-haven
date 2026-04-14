@@ -27,6 +27,16 @@ import Subscription from "./pages/Subscription";
 import WritingPractice from "./pages/WritingPractice";
 import LevelComplete from "./pages/LevelComplete";
 import StreakMilestone from "./pages/StreakMilestone";
+import LearnHub from "./pages/LearnHub";
+import PinyinLearn from "./pages/PinyinLearn";
+import RadicalsLearn from "./pages/RadicalsLearn";
+import GrammarLearn from "./pages/GrammarLearn";
+import ScenarioLearn from "./pages/ScenarioLearn";
+import HskExam from "./pages/HskExam";
+import ListeningPractice from "./pages/ListeningPractice";
+import GamesHub from "./pages/GamesHub";
+import MemoryGame from "./pages/MemoryGame";
+import SpeedQuiz from "./pages/SpeedQuiz";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -55,6 +65,7 @@ const App = () => (
           <Route path="/practice/quiz/:id" element={<QuizPlay />} />
           <Route path="/practice/quiz/:id/results" element={<QuizResults />} />
           <Route path="/practice/writing" element={<WritingPractice />} />
+          <Route path="/practice/listening" element={<ListeningPractice />} />
           <Route path="/vocabulary" element={<Vocabulary />} />
           <Route path="/vocabulary/:id" element={<VocabularyDetail />} />
           <Route path="/progress" element={<Progress />} />
@@ -63,6 +74,16 @@ const App = () => (
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/milestone/level-complete" element={<LevelComplete />} />
           <Route path="/milestone/streak" element={<StreakMilestone />} />
+          {/* New learning paths */}
+          <Route path="/learn" element={<LearnHub />} />
+          <Route path="/learn/pinyin" element={<PinyinLearn />} />
+          <Route path="/learn/radicals" element={<RadicalsLearn />} />
+          <Route path="/learn/grammar" element={<GrammarLearn />} />
+          <Route path="/learn/scenarios" element={<ScenarioLearn />} />
+          <Route path="/exam/hsk" element={<HskExam />} />
+          <Route path="/games" element={<GamesHub />} />
+          <Route path="/games/memory" element={<MemoryGame />} />
+          <Route path="/games/speed" element={<SpeedQuiz />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNav />

@@ -1,20 +1,20 @@
-import { BookOpen, Home, Target, BarChart3, Trophy } from "lucide-react";
+import { BookOpen, Home, Target, BarChart3, Trophy, Compass } from "lucide-react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { user } from "@/data/mockData";
 
 const links = [
   { icon: Home, label: "Trang chủ", path: "/dashboard" },
+  { icon: Compass, label: "Khám phá", path: "/learn" },
   { icon: BookOpen, label: "Học", path: "/study" },
   { icon: Target, label: "Luyện tập", path: "/practice/quiz/setup" },
   { icon: BarChart3, label: "Tiến độ", path: "/progress" },
-  { icon: Trophy, label: "Thành tích", path: "/achievements" },
 ];
 
 const TopNav = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const hidePaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/onboarding", "/study/flashcard", "/study/complete", "/practice/writing", "/milestone"];
+  const hidePaths = ["/", "/login", "/register", "/forgot-password", "/reset-password", "/onboarding", "/study/flashcard", "/study/complete", "/practice/writing", "/milestone", "/games/memory", "/games/speed", "/practice/listening", "/exam/hsk"];
   const shouldHide = hidePaths.some(p => location.pathname === p || location.pathname.startsWith(p + "/") || (p === "/onboarding" && location.pathname.startsWith(p)));
   const isQuizInProgress = location.pathname.startsWith("/practice/quiz/") && location.pathname !== "/practice/quiz/setup";
   if (shouldHide || isQuizInProgress) return null;
