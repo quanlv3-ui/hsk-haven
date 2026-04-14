@@ -102,3 +102,291 @@ export const recentActivities = [
   { icon: "✅", text: "Quiz HSK 2 — 90%", time: "5 giờ trước" },
   { icon: "🆕", text: "Học 5 từ mới HSK 3", time: "Hôm qua" },
 ];
+
+// ===== PINYIN DATA =====
+export const pinyinInitials = [
+  { letter: "b", example: "爸", pinyin: "bà", meaning: "bố", audio: "ba" },
+  { letter: "p", example: "怕", pinyin: "pà", meaning: "sợ", audio: "pa" },
+  { letter: "m", example: "妈", pinyin: "mā", meaning: "mẹ", audio: "ma" },
+  { letter: "f", example: "发", pinyin: "fā", meaning: "phát", audio: "fa" },
+  { letter: "d", example: "大", pinyin: "dà", meaning: "lớn", audio: "da" },
+  { letter: "t", example: "他", pinyin: "tā", meaning: "anh ấy", audio: "ta" },
+  { letter: "n", example: "你", pinyin: "nǐ", meaning: "bạn", audio: "ni" },
+  { letter: "l", example: "来", pinyin: "lái", meaning: "đến", audio: "lai" },
+  { letter: "g", example: "哥", pinyin: "gē", meaning: "anh", audio: "ge" },
+  { letter: "k", example: "看", pinyin: "kàn", meaning: "nhìn", audio: "kan" },
+  { letter: "h", example: "好", pinyin: "hǎo", meaning: "tốt", audio: "hao" },
+  { letter: "j", example: "家", pinyin: "jiā", meaning: "nhà", audio: "jia" },
+  { letter: "q", example: "去", pinyin: "qù", meaning: "đi", audio: "qu" },
+  { letter: "x", example: "小", pinyin: "xiǎo", meaning: "nhỏ", audio: "xiao" },
+  { letter: "zh", example: "中", pinyin: "zhōng", meaning: "giữa", audio: "zhong" },
+  { letter: "ch", example: "吃", pinyin: "chī", meaning: "ăn", audio: "chi" },
+  { letter: "sh", example: "是", pinyin: "shì", meaning: "là", audio: "shi" },
+  { letter: "r", example: "人", pinyin: "rén", meaning: "người", audio: "ren" },
+  { letter: "z", example: "在", pinyin: "zài", meaning: "ở", audio: "zai" },
+  { letter: "c", example: "从", pinyin: "cóng", meaning: "từ", audio: "cong" },
+  { letter: "s", example: "三", pinyin: "sān", meaning: "ba", audio: "san" },
+];
+
+export const pinyinTones = [
+  { tone: 1, name: "Thanh 1 — Bằng", symbol: "ˉ", description: "Cao và đều, giữ nguyên", example: "mā (妈) — mẹ", color: "text-easy" },
+  { tone: 2, name: "Thanh 2 — Lên", symbol: "ˊ", description: "Đi lên từ trung lên cao", example: "má (麻) — gai", color: "text-success" },
+  { tone: 3, name: "Thanh 3 — Xuống lên", symbol: "ˇ", description: "Xuống thấp rồi lên lại", example: "mǎ (马) — ngựa", color: "text-warning" },
+  { tone: 4, name: "Thanh 4 — Xuống", symbol: "ˋ", description: "Đi xuống nhanh và dứt khoát", example: "mà (骂) — chửi", color: "text-destructive" },
+  { tone: 5, name: "Thanh nhẹ", symbol: "·", description: "Nhẹ và ngắn, không nhấn", example: "ma (吗) — (trợ từ hỏi)", color: "text-muted-foreground" },
+];
+
+// ===== RADICALS (Bộ thủ) =====
+export const radicals = [
+  { id: 1, radical: "人", pinyin: "rén", meaning: "người", strokeCount: 2, examples: ["你", "他", "们", "什"], category: "Con người" },
+  { id: 2, radical: "口", pinyin: "kǒu", meaning: "miệng", strokeCount: 3, examples: ["吃", "喝", "吗", "呢"], category: "Cơ thể" },
+  { id: 3, radical: "女", pinyin: "nǚ", meaning: "nữ, gái", strokeCount: 3, examples: ["妈", "她", "好", "姐"], category: "Con người" },
+  { id: 4, radical: "水", pinyin: "shuǐ", meaning: "nước", strokeCount: 4, examples: ["河", "海", "洗", "游"], category: "Tự nhiên" },
+  { id: 5, radical: "火", pinyin: "huǒ", meaning: "lửa", strokeCount: 4, examples: ["热", "烧", "灯", "炒"], category: "Tự nhiên" },
+  { id: 6, radical: "木", pinyin: "mù", meaning: "cây, gỗ", strokeCount: 4, examples: ["林", "森", "树", "本"], category: "Tự nhiên" },
+  { id: 7, radical: "手", pinyin: "shǒu", meaning: "tay", strokeCount: 4, examples: ["打", "拿", "找", "把"], category: "Cơ thể" },
+  { id: 8, radical: "心", pinyin: "xīn", meaning: "tim, lòng", strokeCount: 4, examples: ["想", "思", "忘", "快"], category: "Cơ thể" },
+  { id: 9, radical: "日", pinyin: "rì", meaning: "mặt trời, ngày", strokeCount: 4, examples: ["明", "时", "早", "晚"], category: "Tự nhiên" },
+  { id: 10, radical: "月", pinyin: "yuè", meaning: "mặt trăng, tháng", strokeCount: 4, examples: ["朋", "有", "期", "肉"], category: "Tự nhiên" },
+  { id: 11, radical: "土", pinyin: "tǔ", meaning: "đất", strokeCount: 3, examples: ["地", "场", "城", "在"], category: "Tự nhiên" },
+  { id: 12, radical: "金", pinyin: "jīn", meaning: "vàng, kim loại", strokeCount: 8, examples: ["钱", "银", "铁", "钟"], category: "Vật liệu" },
+  { id: 13, radical: "言", pinyin: "yán", meaning: "lời nói", strokeCount: 7, examples: ["说", "话", "语", "读"], category: "Giao tiếp" },
+  { id: 14, radical: "走", pinyin: "zǒu", meaning: "đi bộ", strokeCount: 7, examples: ["起", "超", "越", "赶"], category: "Hành động" },
+  { id: 15, radical: "食", pinyin: "shí", meaning: "thức ăn", strokeCount: 9, examples: ["饭", "饿", "馆", "饮"], category: "Đời sống" },
+];
+
+// ===== GRAMMAR =====
+export const grammarLessons = [
+  {
+    id: "1",
+    hskLevel: 1,
+    title: "Câu khẳng định cơ bản: S + V + O",
+    explanation: "Tiếng Trung có trật tự câu giống tiếng Việt: Chủ ngữ + Động từ + Tân ngữ",
+    structure: "主语 + 动词 + 宾语",
+    examples: [
+      { chinese: "我吃饭。", pinyin: "Wǒ chī fàn.", vietnamese: "Tôi ăn cơm." },
+      { chinese: "他喝水。", pinyin: "Tā hē shuǐ.", vietnamese: "Anh ấy uống nước." },
+      { chinese: "她学中文。", pinyin: "Tā xué zhōngwén.", vietnamese: "Cô ấy học tiếng Trung." },
+    ],
+    exercises: [
+      { type: "order", words: ["我", "喝", "咖啡"], correct: "我喝咖啡。", vietnamese: "Tôi uống cà phê." },
+      { type: "order", words: ["她", "看", "书"], correct: "她看书。", vietnamese: "Cô ấy đọc sách." },
+    ],
+  },
+  {
+    id: "2",
+    hskLevel: 1,
+    title: "Câu hỏi với 吗 (ma)",
+    explanation: "Thêm 吗 vào cuối câu khẳng định để tạo câu hỏi Yes/No",
+    structure: "S + V + O + 吗？",
+    examples: [
+      { chinese: "你好吗？", pinyin: "Nǐ hǎo ma?", vietnamese: "Bạn khỏe không?" },
+      { chinese: "你吃饭了吗？", pinyin: "Nǐ chī fàn le ma?", vietnamese: "Bạn ăn cơm chưa?" },
+    ],
+    exercises: [
+      { type: "order", words: ["你", "是", "学生", "吗"], correct: "你是学生吗？", vietnamese: "Bạn là học sinh à?" },
+    ],
+  },
+  {
+    id: "3",
+    hskLevel: 1,
+    title: "Phủ định với 不 (bù)",
+    explanation: "Đặt 不 trước động từ/tính từ để phủ định (trừ 有 dùng 没)",
+    structure: "S + 不 + V + O",
+    examples: [
+      { chinese: "我不吃肉。", pinyin: "Wǒ bù chī ròu.", vietnamese: "Tôi không ăn thịt." },
+      { chinese: "他不是老师。", pinyin: "Tā bú shì lǎoshī.", vietnamese: "Anh ấy không phải giáo viên." },
+    ],
+    exercises: [
+      { type: "order", words: ["我", "不", "喜欢", "猫"], correct: "我不喜欢猫。", vietnamese: "Tôi không thích mèo." },
+    ],
+  },
+  {
+    id: "4",
+    hskLevel: 2,
+    title: "So sánh với 比 (bǐ)",
+    explanation: "A 比 B + tính từ = A ... hơn B",
+    structure: "A + 比 + B + Adj",
+    examples: [
+      { chinese: "他比我高。", pinyin: "Tā bǐ wǒ gāo.", vietnamese: "Anh ấy cao hơn tôi." },
+      { chinese: "今天比昨天冷。", pinyin: "Jīntiān bǐ zuótiān lěng.", vietnamese: "Hôm nay lạnh hơn hôm qua." },
+    ],
+    exercises: [
+      { type: "order", words: ["苹果", "比", "香蕉", "贵"], correct: "苹果比香蕉贵。", vietnamese: "Táo đắt hơn chuối." },
+    ],
+  },
+  {
+    id: "5",
+    hskLevel: 2,
+    title: "Đã/rồi với 了 (le)",
+    explanation: "Đặt 了 sau động từ để chỉ hành động đã hoàn thành",
+    structure: "S + V + 了 + O",
+    examples: [
+      { chinese: "我吃了饭。", pinyin: "Wǒ chī le fàn.", vietnamese: "Tôi đã ăn cơm." },
+      { chinese: "他去了北京。", pinyin: "Tā qù le Běijīng.", vietnamese: "Anh ấy đã đi Bắc Kinh." },
+    ],
+    exercises: [
+      { type: "order", words: ["我", "买", "了", "一本书"], correct: "我买了一本书。", vietnamese: "Tôi đã mua một cuốn sách." },
+    ],
+  },
+];
+
+// ===== HSK EXAM =====
+export const hskExamSections = {
+  listening: [
+    {
+      id: 1,
+      audio: "Nǐ hǎo, qǐngwèn nǐ jiào shénme míngzì?",
+      audioText: "你好，请问你叫什么名字？",
+      question: "Người nói muốn biết điều gì?",
+      options: ["Tên của bạn", "Tuổi của bạn", "Nghề nghiệp", "Quê quán"],
+      correct: 0,
+    },
+    {
+      id: 2,
+      audio: "Jīntiān tiānqì hěn hǎo, wǒmen qù gōngyuán ba.",
+      audioText: "今天天气很好，我们去公园吧。",
+      question: "Người nói muốn làm gì?",
+      options: ["Đi công viên", "Ở nhà", "Đi làm", "Đi mua sắm"],
+      correct: 0,
+    },
+    {
+      id: 3,
+      audio: "Zhè ge cài duōshǎo qián?",
+      audioText: "这个菜多少钱？",
+      question: "Người nói đang hỏi gì?",
+      options: ["Giá tiền", "Tên món", "Cách nấu", "Nguyên liệu"],
+      correct: 0,
+    },
+  ],
+  reading: [
+    {
+      id: 1,
+      passage: "小明每天早上六点起床。他先洗脸，然后吃早饭。八点他去学校上课。下午三点放学后，他和朋友一起打篮球。",
+      passagePinyin: "Xiǎo Míng měitiān zǎoshàng liù diǎn qǐchuáng...",
+      questions: [
+        { question: "小明几点起床？", options: ["五点", "六点", "七点", "八点"], correct: 1 },
+        { question: "他放学后做什么？", options: ["看书", "回家", "打篮球", "上网"], correct: 2 },
+      ],
+    },
+    {
+      id: 2,
+      passage: "我的妈妈是一个医生。她在医院工作。她每天很忙，但是她很喜欢她的工作。周末的时候，她喜欢做饭和看电影。",
+      passagePinyin: "Wǒ de māma shì yí ge yīshēng...",
+      questions: [
+        { question: "妈妈的职业是什么？", options: ["老师", "医生", "护士", "厨师"], correct: 1 },
+        { question: "妈妈周末喜欢做什么？", options: ["工作", "运动", "做饭和看电影", "旅游"], correct: 2 },
+      ],
+    },
+  ],
+  writing: [
+    {
+      id: 1,
+      instruction: "Sắp xếp từ thành câu đúng ngữ pháp:",
+      words: ["我", "每天", "学习", "中文"],
+      correct: "我每天学习中文。",
+      translation: "Tôi học tiếng Trung mỗi ngày.",
+    },
+    {
+      id: 2,
+      instruction: "Sắp xếp từ thành câu đúng ngữ pháp:",
+      words: ["他", "去年", "去", "了", "北京"],
+      correct: "他去年去了北京。",
+      translation: "Anh ấy năm ngoái đã đi Bắc Kinh.",
+    },
+    {
+      id: 3,
+      instruction: "Sắp xếp từ thành câu đúng ngữ pháp:",
+      words: ["这个", "苹果", "比", "那个", "大"],
+      correct: "这个苹果比那个大。",
+      translation: "Quả táo này lớn hơn quả kia.",
+    },
+  ],
+};
+
+// ===== LISTENING PRACTICE =====
+export const listeningExercises = [
+  { id: 1, type: "word" as const, audioText: "你好", pinyin: "nǐ hǎo", options: ["你好", "你们", "他好", "她好"], correct: 0, meaning: "Xin chào" },
+  { id: 2, type: "word" as const, audioText: "谢谢", pinyin: "xiè xiè", options: ["学习", "谢谢", "姐姐", "些些"], correct: 1, meaning: "Cảm ơn" },
+  { id: 3, type: "word" as const, audioText: "老师", pinyin: "lǎo shī", options: ["老是", "老师", "老实", "劳动"], correct: 1, meaning: "Giáo viên" },
+  { id: 4, type: "sentence" as const, audioText: "我是学生", pinyin: "wǒ shì xuéshēng", options: ["Tôi là giáo viên", "Tôi là học sinh", "Tôi là bác sĩ", "Tôi là công nhân"], correct: 1, meaning: "Tôi là học sinh" },
+  { id: 5, type: "sentence" as const, audioText: "今天天气很好", pinyin: "jīntiān tiānqì hěn hǎo", options: ["Hôm nay trời đẹp", "Hôm qua trời mưa", "Ngày mai trời lạnh", "Tối nay trời tối"], correct: 0, meaning: "Hôm nay thời tiết rất tốt" },
+];
+
+// ===== MEMORY GAME =====
+export const memoryGameCards = [
+  { id: 1, hanzi: "大", meaning: "Lớn" },
+  { id: 2, hanzi: "小", meaning: "Nhỏ" },
+  { id: 3, hanzi: "好", meaning: "Tốt" },
+  { id: 4, hanzi: "人", meaning: "Người" },
+  { id: 5, hanzi: "中", meaning: "Giữa" },
+  { id: 6, hanzi: "天", meaning: "Trời" },
+  { id: 7, hanzi: "上", meaning: "Trên" },
+  { id: 8, hanzi: "下", meaning: "Dưới" },
+];
+
+// ===== SCENARIOS =====
+export const scenarios = [
+  {
+    id: "restaurant",
+    title: "Đi nhà hàng 🍜",
+    description: "Học cách gọi món, hỏi giá, thanh toán",
+    icon: "🍜",
+    phrases: [
+      { chinese: "服务员！", pinyin: "Fúwùyuán!", vietnamese: "Phục vụ ơi!" },
+      { chinese: "请给我菜单。", pinyin: "Qǐng gěi wǒ càidān.", vietnamese: "Cho tôi xem thực đơn." },
+      { chinese: "我要一碗米饭。", pinyin: "Wǒ yào yì wǎn mǐfàn.", vietnamese: "Tôi muốn một bát cơm." },
+      { chinese: "多少钱？", pinyin: "Duōshǎo qián?", vietnamese: "Bao nhiêu tiền?" },
+      { chinese: "买单！", pinyin: "Mǎidān!", vietnamese: "Tính tiền!" },
+    ],
+  },
+  {
+    id: "travel",
+    title: "Du lịch ✈️",
+    description: "Hỏi đường, đặt khách sạn, mua vé",
+    icon: "✈️",
+    phrases: [
+      { chinese: "请问，火车站怎么走？", pinyin: "Qǐngwèn, huǒchē zhàn zěnme zǒu?", vietnamese: "Xin hỏi, ga xe lửa đi đường nào?" },
+      { chinese: "我要订一个房间。", pinyin: "Wǒ yào dìng yí ge fángjiān.", vietnamese: "Tôi muốn đặt một phòng." },
+      { chinese: "一张去北京的票。", pinyin: "Yì zhāng qù Běijīng de piào.", vietnamese: "Một vé đi Bắc Kinh." },
+    ],
+  },
+  {
+    id: "shopping",
+    title: "Mua sắm 🛍️",
+    description: "Trả giá, hỏi size, thanh toán",
+    icon: "🛍️",
+    phrases: [
+      { chinese: "这个多少钱？", pinyin: "Zhè ge duōshǎo qián?", vietnamese: "Cái này bao nhiêu tiền?" },
+      { chinese: "太贵了！便宜一点。", pinyin: "Tài guì le! Piányi yìdiǎn.", vietnamese: "Đắt quá! Rẻ hơn chút." },
+      { chinese: "可以试试吗？", pinyin: "Kěyǐ shìshì ma?", vietnamese: "Có thể thử được không?" },
+    ],
+  },
+  {
+    id: "hospital",
+    title: "Khám bệnh 🏥",
+    description: "Mô tả triệu chứng, hỏi bác sĩ",
+    icon: "🏥",
+    phrases: [
+      { chinese: "我不舒服。", pinyin: "Wǒ bù shūfu.", vietnamese: "Tôi không khỏe." },
+      { chinese: "我头疼。", pinyin: "Wǒ tóu téng.", vietnamese: "Tôi đau đầu." },
+      { chinese: "我需要看医生。", pinyin: "Wǒ xūyào kàn yīshēng.", vietnamese: "Tôi cần gặp bác sĩ." },
+    ],
+  },
+];
+
+// ===== STROKE DATA (simplified for demo) =====
+export const strokeData: Record<string, { strokes: string[]; medians: number[][][] }> = {
+  "大": {
+    strokes: ["M 350 150 L 350 650", "M 100 350 L 600 350", "M 350 350 L 150 700", "M 350 350 L 550 700"],
+    medians: [[[350,150],[350,650]],[[100,350],[600,350]],[[350,350],[150,700]]]
+  },
+  "人": {
+    strokes: ["M 350 100 L 150 700", "M 350 100 L 550 700"],
+    medians: [[[350,100],[150,700]],[[350,100],[550,700]]]
+  },
+  "中": {
+    strokes: ["M 200 200 L 500 200 L 500 600 L 200 600 L 200 200", "M 350 100 L 350 700"],
+    medians: [[[200,200],[500,200],[500,600],[200,600],[200,200]],[[350,100],[350,700]]]
+  },
+};
