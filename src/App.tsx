@@ -3,8 +3,31 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import Index from "./pages/Index.tsx";
-import NotFound from "./pages/NotFound.tsx";
+import BottomNav from "@/components/layout/BottomNav";
+import TopNav from "@/components/layout/TopNav";
+import Landing from "./pages/Landing";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ForgotPassword from "./pages/ForgotPassword";
+import ResetPassword from "./pages/ResetPassword";
+import OnboardingLevel from "./pages/OnboardingLevel";
+import OnboardingTry from "./pages/OnboardingTry";
+import OnboardingGoal from "./pages/OnboardingGoal";
+import Dashboard from "./pages/Dashboard";
+import StudyLevels from "./pages/StudyLevels";
+import FlashcardStudy from "./pages/FlashcardStudy";
+import StudyComplete from "./pages/StudyComplete";
+import { QuizSetup, QuizPlay, QuizResults } from "./pages/Quiz";
+import Vocabulary from "./pages/Vocabulary";
+import VocabularyDetail from "./pages/VocabularyDetail";
+import Progress from "./pages/Progress";
+import Achievements from "./pages/Achievements";
+import Settings from "./pages/Settings";
+import Subscription from "./pages/Subscription";
+import WritingPractice from "./pages/WritingPractice";
+import LevelComplete from "./pages/LevelComplete";
+import StreakMilestone from "./pages/StreakMilestone";
+import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -14,11 +37,35 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
+        <TopNav />
         <Routes>
-          <Route path="/" element={<Index />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="/" element={<Landing />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/onboarding/level" element={<OnboardingLevel />} />
+          <Route path="/onboarding/try" element={<OnboardingTry />} />
+          <Route path="/onboarding/goal" element={<OnboardingGoal />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/study" element={<StudyLevels />} />
+          <Route path="/study/flashcard" element={<FlashcardStudy />} />
+          <Route path="/study/complete" element={<StudyComplete />} />
+          <Route path="/practice/quiz/setup" element={<QuizSetup />} />
+          <Route path="/practice/quiz/:id" element={<QuizPlay />} />
+          <Route path="/practice/quiz/:id/results" element={<QuizResults />} />
+          <Route path="/practice/writing" element={<WritingPractice />} />
+          <Route path="/vocabulary" element={<Vocabulary />} />
+          <Route path="/vocabulary/:id" element={<VocabularyDetail />} />
+          <Route path="/progress" element={<Progress />} />
+          <Route path="/achievements" element={<Achievements />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/subscription" element={<Subscription />} />
+          <Route path="/milestone/level-complete" element={<LevelComplete />} />
+          <Route path="/milestone/streak" element={<StreakMilestone />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
+        <BottomNav />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
