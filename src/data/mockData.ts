@@ -126,6 +126,14 @@ export const pinyinInitials = [
   { letter: "z", example: "在", pinyin: "zài", meaning: "ở", audio: "zai" },
   { letter: "c", example: "从", pinyin: "cóng", meaning: "từ", audio: "cong" },
   { letter: "s", example: "三", pinyin: "sān", meaning: "ba", audio: "san" },
+  { letter: "y", example: "有", pinyin: "yǒu", meaning: "có", audio: "you" },
+  { letter: "w", example: "我", pinyin: "wǒ", meaning: "tôi", audio: "wo" }
+];
+
+export const pinyinFinals = [
+  { group: "Vận mẫu đơn", finals: ["a", "o", "e", "i", "u", "ü"] },
+  { group: "Vận mẫu kép", finals: ["ai", "ei", "ui", "ao", "ou", "iu", "ie", "üe", "er"] },
+  { group: "Vận mẫu mũi", finals: ["an", "en", "in", "un", "ün", "ang", "eng", "ing", "ong"] }
 ];
 
 export const pinyinTones = [
@@ -153,6 +161,217 @@ export const radicals = [
   { id: 13, radical: "言", pinyin: "yán", meaning: "lời nói", strokeCount: 7, examples: ["说", "话", "语", "读"], category: "Giao tiếp" },
   { id: 14, radical: "走", pinyin: "zǒu", meaning: "đi bộ", strokeCount: 7, examples: ["起", "超", "越", "赶"], category: "Hành động" },
   { id: 15, radical: "食", pinyin: "shí", meaning: "thức ăn", strokeCount: 9, examples: ["饭", "饿", "馆", "饮"], category: "Đời sống" },
+];
+
+// ===== PHONETIC MATRICES (Ma trận Hình Thanh) =====
+export const phoneticMatrices = [
+  {
+    id: "qing_matrix",
+    baseRadical: "青",
+    basePinyin: "qīng",
+    baseMeaning: "Xanh dương/lục, tuổi trẻ",
+    derivatives: [
+      { character: "清", pinyin: "qīng", radical: "氵 (Thủy - Nước)", meaning: "Trong trẻo, thanh khiết (nước xanh)" },
+      { character: "请", pinyin: "qǐng", radical: "讠 (Ngôn - Lời nói)", meaning: "Mời, thỉnh cầu (dùng lời)" },
+      { character: "晴", pinyin: "qíng", radical: "日 (Nhật - Mặt trời)", meaning: "Trời quang, nắng (mặt trời)" },
+      { character: "情", pinyin: "qíng", radical: "忄 (Tâm - Tình cảm)", meaning: "Tình cảm, tình yêu (con tim)" },
+      { character: "睛", pinyin: "jīng", radical: "目 (Mục - Mắt)", meaning: "Tròng mắt, con ngươi (mắt)" },
+      { character: "蜻", pinyin: "qīng", radical: "虫 (Trùng - Côn trùng)", meaning: "Con chuồn chuồn" },
+      { character: "精", pinyin: "jīng", radical: "米 (Mễ - Gạo)", meaning: "Tinh túy, tinh xảo (Gạo trắng sát kỹ)" },
+      { character: "猜", pinyin: "cāi", radical: "犭 (Khuyển - Chó)", meaning: "Đoán, nghi ngờ (Con chó do thám) [Biến âm]" }
+    ]
+  },
+  {
+    id: "jian_matrix",
+    baseRadical: "建",
+    basePinyin: "jiàn",
+    baseMeaning: "Kiến (Xây dựng, thành lập)",
+    derivatives: [
+      { character: "健", pinyin: "jiàn", radical: "亻 (Nhân - Người)", meaning: "Khỏe mạnh (người tập thể dục)" },
+      { character: "键", pinyin: "jiàn", radical: "钅 (Kim - Kim loại)", meaning: "Chìa khóa, bàn phím (làm bằng kim loại)" },
+      { character: "腱", pinyin: "jiàn", radical: "月 (Nhục - Thịt/Cơ thể)", meaning: "Gân, dây chằng (chỉ cơ thể)" },
+      { character: "楗", pinyin: "jiàn", radical: "木 (Mộc - Gỗ)", meaning: "Then cài cửa (bằng gỗ)" }
+    ]
+  },
+  {
+    id: "bao_matrix",
+    baseRadical: "包",
+    basePinyin: "bāo",
+    baseMeaning: "Bao, túi, bọc",
+    derivatives: [
+      { character: "饱", pinyin: "bǎo", radical: "饣 (Thực - Ăn)", meaning: "No bụng (do ăn)" },
+      { character: "抱", pinyin: "bào", radical: "扌 (Thủ - Tay)", meaning: "Ôm ấp (dùng tay)" },
+      { character: "跑", pinyin: "pǎo", radical: "足 (Túc - Chân)", meaning: "Chạy (dùng chân) [Biến âm nhẹ]" },
+      { character: "泡", pinyin: "pào", radical: "氵 (Thủy - Nước)", meaning: "Bong bóng, pha trà (có nước)" },
+      { character: "炮", pinyin: "pào", radical: "火 (Hỏa - Lửa)", meaning: "Pháo, đại bác (dùng lửa)" },
+      { character: "胞", pinyin: "bāo", radical: "月 (Nhục - Cơ thể)", meaning: "Tế bào, đồng bào (Cùng ruột thịt)" }
+    ]
+  },
+  {
+    id: "fang_matrix",
+    baseRadical: "方",
+    basePinyin: "fāng",
+    baseMeaning: "Phương, vuông vức, phương hướng",
+    derivatives: [
+      { character: "房", pinyin: "fáng", radical: "户 (Hộ - Cửa)", meaning: "Căn phòng, nhà ở" },
+      { character: "放", pinyin: "fàng", radical: "攵 (Phốc - Đánh/Hành động)", meaning: "Phóng, thả ra, đặt để" },
+      { character: "防", pinyin: "fáng", radical: "阝 (Phụ - Gò đất)", meaning: "Phòng thủ, đê điều (Dùng đất đắp đê)" },
+      { character: "芳", pinyin: "fāng", radical: "艹 (Thảo - Cỏ)", meaning: "Hương thơm (của hoa cỏ)" },
+      { character: "访", pinyin: "fǎng", radical: "讠 (Ngôn - Lời nói)", meaning: "Phỏng vấn, thăm hỏi" },
+      { character: "坊", pinyin: "fāng", radical: "土 (Thổ - Đất)", meaning: "Phường, xưởng đất" }
+    ]
+  },
+  {
+    id: "ke_matrix",
+    baseRadical: "可",
+    basePinyin: "kě",
+    baseMeaning: "Có thể, cho phép",
+    derivatives: [
+      { character: "河", pinyin: "hé", radical: "氵 (Thủy - Nước)", meaning: "Dòng sông (Âm hé/ke đổi nhau)" },
+      { character: "呵", pinyin: "hē", radical: "口 (Khẩu - Miệng)", meaning: "Hơi thở, chế nhạo" },
+      { character: "奇", pinyin: "qí", radical: "大 (Đại - To lớn)", meaning: "Kỳ lạ, kỳ diệu (Âm qi biến thể từ ke)" },
+      { character: "骑", pinyin: "qí", radical: "马 (Mã - Ngựa)", meaning: "Cưỡi ngựa" },
+      { character: "椅", pinyin: "yǐ", radical: "木 (Mộc - Gỗ)", meaning: "Cái ghế ngồi (Bằng gỗ)" }
+    ]
+  }
+];
+
+// ===== IDEOGRAM EQUATIONS (Hội Ý / Lắp Ráp) =====
+export const ideogramEquations = [
+  {
+    id: "ming",
+    result: "明",
+    pinyin: "míng",
+    meaning: "Sáng sủa, rực rỡ",
+    parts: [
+      { character: "日", meaning: "Mặt trời" },
+      { character: "月", meaning: "Mặt trăng" }
+    ],
+    explanation: "Khi có cả ánh sáng của mặt trời (Ban ngày) và mặt trăng (Ban đêm) hội tụ, thì tượng trưng cho sự sáng sủa tột bực."
+  },
+  {
+    id: "hao",
+    result: "好",
+    pinyin: "hǎo",
+    meaning: "Tốt đẹp, hay",
+    parts: [
+      { character: "女", meaning: "Phụ nữ/Mẹ" },
+      { character: "子", meaning: "Con cái" }
+    ],
+    explanation: "Phụ nữ (Mẹ) mà bế đứa con trên tay, hoặc gia đình có đủ nếp đủ tẻ là niềm hạnh phúc và tốt đẹp nhất (tốt, hay)."
+  },
+  {
+    id: "xiu",
+    result: "休",
+    pinyin: "xiū",
+    meaning: "Nghỉ ngơi, hưu trí",
+    parts: [
+      { character: "亻", meaning: "Con người" },
+      { character: "木", meaning: "Cái cây" }
+    ],
+    explanation: "Hình ảnh một người đang tựa lưng vào gốc cây để nghỉ mệt sau khi làm lụng vất vả."
+  },
+  {
+    id: "lin",
+    result: "林",
+    pinyin: "lín",
+    meaning: "Rừng nhỏ",
+    parts: [
+      { character: "木", meaning: "Cây" },
+      { character: "木", meaning: "Cây" }
+    ],
+    explanation: "Hai cái cây đứng cạnh nhau hội ý lại tạo thành một khu rừng (Lâm)."
+  },
+  {
+    id: "sen",
+    result: "森",
+    pinyin: "sēn",
+    meaning: "Rừng rậm",
+    parts: [
+      { character: "木", meaning: "Cây" },
+      { character: "木", meaning: "Cây" },
+      { character: "木", meaning: "Cây" }
+    ],
+    explanation: "Ba cái cây đứng chồng chéo lên nhau biểu thị số lượng quá nhiều tạo thành một khu rừng rậm rạp chằng chịt (Sâm)."
+  },
+  {
+    id: "kàn",
+    result: "看",
+    pinyin: "kàn",
+    meaning: "Nhìn, xem",
+    parts: [
+      { character: "手", meaning: "Bàn tay" },
+      { character: "目", meaning: "Con mắt" }
+    ],
+    explanation: "Đưa bàn tay (biến thể thành 龵) lên che ngang mí mắt (目) để cản chói nắng giúp ta nhìn được xa hơn."
+  },
+  {
+    id: "nan",
+    result: "男",
+    pinyin: "nán",
+    meaning: "Đàn ông, nam giới",
+    parts: [
+      { character: "田", meaning: "Ruộng đồng" },
+      { character: "力", meaning: "Sức mạnh" }
+    ],
+    explanation: "Người dùng sức lực (力) cày cấy trên đồng ruộng (田) chính là hình ảnh đặc trưng của người đàn ông."
+  },
+  {
+    id: "jian",
+    result: "尖",
+    pinyin: "jiān",
+    meaning: "Nhọn (cái ngòi nhọn)",
+    parts: [
+      { character: "小", meaning: "Nhỏ bé" },
+      { character: "大", meaning: "To lớn" }
+    ],
+    explanation: "Một vật có cấu trúc ở dưới to (大) ở trên dần nhỏ lại (小) thì đó chính là hình dáng của một mũi nhọn."
+  },
+  {
+    id: " Cong",
+    result: "从",
+    pinyin: "cóng",
+    meaning: "Theo gót, đi theo",
+    parts: [
+      { character: "人", meaning: "Người trước" },
+      { character: "人", meaning: "Người sau" }
+    ],
+    explanation: "Một người đi đằng trước, một người đi ở đằng sau nối gót nhau tạo thành chữ Tòng (đi theo, tuân theo)."
+  },
+  {
+    id: "zhong",
+    result: "众",
+    pinyin: "zhòng",
+    meaning: "Quần chúng, đám đông",
+    parts: [
+      { character: "人", meaning: "Người" },
+      { character: "人", meaning: "Người" },
+      { character: "人", meaning: "Người" }
+    ],
+    explanation: "Rất nhiều người (3 chữ Nhân) tụ tập lại một chỗ tượng trưng cho đám đông, quần chúng."
+  },
+  {
+    id: "qiu",
+    result: "囚",
+    pinyin: "qiú",
+    meaning: "Tù nhân",
+    parts: [
+      { character: "囗", meaning: "Phạm vi bị nhốt" },
+      { character: "人", meaning: "Con người" }
+    ],
+    explanation: "Một con người (人) bị nhốt kín bên trong một khoảng không/chuồng (囗) thì chính là kẻ bị bắt giam, tù nhân."
+  },
+  {
+    id: "wei",
+    result: "泪",
+    pinyin: "lèi",
+    meaning: "Nước mắt",
+    parts: [
+      { character: "氵", meaning: "Nước" },
+      { character: "目", meaning: "Con mắt" }
+    ],
+    explanation: "Giọt nước (氵) rỉ ra từ khóe mắt (目) chính là hình ảnh tượng ý tả thực của Nước mắt."
+  }
 ];
 
 // ===== GRAMMAR =====
@@ -299,7 +518,37 @@ export const hskExamSections = {
       instruction: "Sắp xếp từ thành câu đúng ngữ pháp:",
       words: ["这个", "苹果", "比", "那个", "大"],
       correct: "这个苹果比那个大。",
-      translation: "Quả táo này lớn hơn quả kia.",
+      translation: "Quả táo này lớn hơn quả kia。",
+    },
+  ],
+  translation: [
+    {
+      id: 1,
+      question: "Dịch câu sau sang Tiếng Trung:",
+      source: "Cô ấy là giáo viên tiếng Trung của tôi.",
+      options: ["他是我的英文老师。", "她是我的中文老师。", "她不是我的老朋友。", "他是越南人。"],
+      correct: 1,
+    },
+    {
+      id: 2,
+      question: "Dịch câu sau sang Tiếng Việt:",
+      source: "今天天气很好，我们去公园吧。",
+      options: ["Hôm nay trời mưa, đừng ra ngoài.", "Hôm nay thời tiết rất đẹp, chúng ta đi công viên nhé.", "Ngày mai thời tiết đẹp, chúng ta đi du lịch nhé.", "Hôm qua đi công viên rất vui."],
+      correct: 1,
+    },
+  ],
+  speaking: [
+    {
+      id: 1,
+      prompt: "Đọc to rõ ràng câu sau (Voice Record):",
+      text: "欢迎光临，请问您几位？",
+      pinyin: "Huānyíng guānglín, qǐngwèn nín jǐ wèi?",
+    },
+    {
+      id: 2,
+      prompt: "Trả lời câu hỏi sau bằng tiếng Trung (Voice Record):",
+      text: "周末你喜欢做什么？",
+      pinyin: "Zhōumò nǐ xǐhuān zuò shénme?",
     },
   ],
 };

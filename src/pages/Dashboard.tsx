@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Flame, BookOpen, Target, PenTool, AlertTriangle, ArrowRight, Sparkles, Trophy, Users, Star, Medal } from "lucide-react";
+import { Flame, BookOpen, Target, PenTool, AlertTriangle, ArrowRight, Sparkles, Trophy, Users, Star, Medal, Lightbulb } from "lucide-react";
 import { user, todayStats, recentActivities } from "@/data/mockData";
 import ProgressBar from "@/components/shared/ProgressBar";
 import { useState } from "react";
@@ -91,6 +91,44 @@ const Dashboard = () => {
               <p className="text-muted-foreground mt-1">Sẵn sàng để chinh phục bài học hôm nay chưa?</p>
             </div>
             <span className="text-4xl animate-float">👋</span>
+          </div>
+
+          {/* PREMIUM NEWBIE GUIDE BANNER */}
+          <div
+             onClick={() => navigate("/learn/radicals")}
+             className="relative overflow-hidden cursor-pointer rounded-[2rem] animate-fade-in group hover:-translate-y-2 shadow-lg hover:shadow-2xl transition-all duration-500"
+             style={{ animationDelay: "0.015s" }}
+          >
+            {/* Bold gradient backdrop */}
+            <div className="absolute inset-0 bg-gradient-to-r from-orange-500 via-amber-500 to-yellow-500 group-hover:scale-[1.02] transition-transform duration-700"></div>
+            
+            {/* Abstract geometry */}
+            <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 bg-white opacity-20 rounded-full blur-3xl group-hover:blur-2xl transition-all duration-700"></div>
+            <div className="absolute -right-8 -bottom-12 text-white/20 opacity-40 group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-700 ease-out">
+               <Lightbulb size={180} />
+            </div>
+
+            <div className="relative z-10 p-6 md:p-8 flex flex-col sm:flex-row items-center sm:items-center gap-5 sm:gap-6 text-center sm:text-left">
+               <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-3xl bg-white/20 backdrop-blur-md border border-white/40 flex items-center justify-center text-white flex-shrink-0 shadow-[0_0_15px_rgba(255,255,255,0.3)] animate-pulse group-hover:animate-none group-hover:scale-110 group-hover:-rotate-12 transition-all duration-500 ease-out">
+                  <Lightbulb size={36} className="text-white drop-shadow-md" />
+               </div>
+               
+               <div className="flex-1">
+                 <div className="inline-block px-3 py-1 bg-white/25 rounded-full text-[10px] sm:text-xs font-black text-white uppercase tracking-widest mb-3 border border-white/40 shadow-sm backdrop-blur-md">
+                   Lộ trình Vỡ Lòng
+                 </div>
+                 <h3 className="text-white font-extrabold text-2xl md:text-3xl mb-2 drop-shadow-md tracking-tight leading-tight group-hover:text-amber-100 transition-colors duration-300">
+                   Chưa biết bắt đầu từ đâu?
+                 </h3>
+                 <p className="text-amber-50 font-medium text-sm md:text-base leading-relaxed max-w-xl">
+                   Học không có phương pháp là lãng phí thời gian! Nhấn vào đây để khai mở <b>Nền tảng Hình Thanh</b>, quy tắc Bộ Thủ và bảng chữ Cái dễ hiểu nhất.
+                 </p>
+               </div>
+
+               <div className="hidden sm:flex mt-4 sm:mt-0 w-12 h-12 rounded-full bg-white text-orange-600 items-center justify-center font-bold shadow-xl group-hover:scale-110 group-hover:translate-x-1 transition-all flex-shrink-0">
+                 <ArrowRight size={24} />
+               </div>
+            </div>
           </div>
 
           {/* Main Learning Path - Lộ trình cho người mới */}

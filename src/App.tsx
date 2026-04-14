@@ -37,6 +37,10 @@ import ListeningPractice from "./pages/ListeningPractice";
 import GamesHub from "./pages/GamesHub";
 import MemoryGame from "./pages/MemoryGame";
 import SpeedQuiz from "./pages/SpeedQuiz";
+import HanziGamesPlay from "./pages/HanziGamesPlay";
+import SentenceAssembleGame from "./pages/SentenceAssembleGame";
+import PictureGuessGame from "./pages/PictureGuessGame";
+import DictationGame from "./pages/DictationGame";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -84,6 +88,10 @@ const App = () => (
           <Route path="/games" element={<GamesHub />} />
           <Route path="/games/memory" element={<MemoryGame />} />
           <Route path="/games/speed" element={<SpeedQuiz />} />
+          <Route path="/games/sentence" element={<SentenceAssembleGame />} />
+          <Route path="/games/picture" element={<PictureGuessGame />} />
+          <Route path="/games/dictation" element={<DictationGame />} />
+          <Route path="/games/hanzi/:type" element={<HanziGamesPlay />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <BottomNav />

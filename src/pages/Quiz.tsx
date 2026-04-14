@@ -67,7 +67,7 @@ const QuizPlay = () => {
         setCurrent(current + 1);
         setSelected(null);
       }
-    }, 1500);
+    }, 400);
   };
 
   return (

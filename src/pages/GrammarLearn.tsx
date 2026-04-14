@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ArrowLeft, Check, X, ChevronRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Reorder } from "framer-motion";
 import { grammarLessons } from "@/data/mockData";
 import HSKBadge from "@/components/shared/HSKBadge";
 
@@ -10,6 +10,7 @@ const GrammarLearn = () => {
   const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
   const [answerIndexes, setAnswerIndexes] = useState<number[]>([]);
   const [showResult, setShowResult] = useState<boolean | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
 
   const lesson = grammarLessons.find((l) => l.id === selectedLesson);
 
@@ -99,51 +100,67 @@ const GrammarLearn = () => {
                     <p className="text-sm text-muted-foreground mt-1">{lesson.exercises[0].vietnamese}</p>
                   </div>
                   
-                  {/* Answer Pool */}
-                  <div className="min-h-[72px] p-3 rounded-2xl border-2 border-dashed border-border bg-muted/30 flex flex-wrap gap-2 items-center">
-                    {answerIndexes.length === 0 && (
-                      <span className="text-muted-foreground text-sm px-2 animate-pulse">
-                        Nhấn vào các từ bên dưới để ghép câu...
-                      </span>
-                    )}
-                    <AnimatePresence>
-                      {answerIndexes.map((idx) => (
+                  {/* Available Words Pool (TOP) */}
+                  <div className="flex flex-wrap gap-2 min-h-[60px] p-1">
+                    {lesson.exercises[0].words.map((w, idx) => {
+                      if (answerIndexes.includes(idx)) return null;
+                      return (
                         <motion.button
-                          layout
-                          initial={{ scale: 0.8, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0.8, opacity: 0 }}
-                          key={`ans-${idx}`}
-                          onClick={() => setAnswerIndexes((prev) => prev.filter((i) => i !== idx))}
-                          className="px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-hanzi text-lg font-medium shadow-soft hover:bg-primary/90 active:scale-95 transition-all"
+                          layoutId={`grammar-word-${idx}`}
+                          key={`avail-${idx}`}
+                          drag
+                          dragSnapToOrigin
+                          whileDrag={{ zIndex: 50, scale: 1.05 }}
+                          transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                          onDragEnd={(e, info) => {
+                            if (info.offset.y > 20) {
+                              setAnswerIndexes((prev) => [...prev, idx]);
+                            }
+                          }}
+                          onClick={() => setAnswerIndexes((prev) => [...prev, idx])}
+                          className="px-4 py-2.5 rounded-xl bg-card border-2 border-border text-foreground font-hanzi text-lg font-medium shadow-sm hover:border-primary/40 hover:-translate-y-1 hover:shadow-soft active:scale-95 transition-colors cursor-grab active:cursor-grabbing select-none"
                         >
-                          {lesson.exercises[0].words[idx]}
+                          {w}
                         </motion.button>
-                      ))}
-                    </AnimatePresence>
+                      );
+                    })}
                   </div>
 
-                  {/* Available Words Pool */}
-                  <div className="flex flex-wrap gap-2 min-h-[60px] p-1">
-                    <AnimatePresence>
-                      {lesson.exercises[0].words.map((w, idx) => {
-                        if (answerIndexes.includes(idx)) return null;
-                        return (
-                          <motion.button
-                            layout
-                            initial={{ scale: 0.8, opacity: 0 }}
-                            animate={{ scale: 1, opacity: 1 }}
-                            exit={{ scale: 0.8, opacity: 0 }}
-                            key={`avail-${idx}`}
-                            onClick={() => setAnswerIndexes((prev) => [...prev, idx])}
-                            className="px-4 py-2.5 rounded-xl bg-card border-2 border-border text-foreground font-hanzi text-lg font-medium shadow-sm hover:border-primary/40 hover:-translate-y-1 hover:shadow-soft active:scale-95 transition-all"
-                          >
-                            {w}
-                          </motion.button>
-                        );
-                      })}
-                    </AnimatePresence>
-                  </div>
+                  {/* Answer Pool (BOTTOM) */}
+                  <Reorder.Group 
+                    axis="x" 
+                    values={answerIndexes} 
+                    onReorder={setAnswerIndexes} 
+                    className="min-h-[72px] p-3 rounded-2xl border-2 border-dashed border-border bg-muted/30 flex flex-wrap gap-2 items-center"
+                  >
+                    {answerIndexes.length === 0 && (
+                      <span className="text-muted-foreground text-sm px-2 animate-pulse absolute">
+                        Nhấn hoặc kéo thả các từ bên trên xuống đây...
+                      </span>
+                    )}
+                    {answerIndexes.map((idx) => (
+                      <Reorder.Item
+                        value={idx}
+                        key={`ans-${idx}`}
+                        onDragStart={() => setIsDragging(true)}
+                        onDragEnd={() => setTimeout(() => setIsDragging(false), 50)}
+                        className="cursor-grab active:cursor-grabbing select-none"
+                      >
+                        <motion.div 
+                          layoutId={`grammar-word-${idx}`}
+                          transition={{ type: "spring", stiffness: 200, damping: 25 }}
+                          onClick={() => {
+                            if (!isDragging) {
+                              setAnswerIndexes((prev) => prev.filter((i) => i !== idx));
+                            }
+                          }}
+                          className="px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-hanzi text-lg font-medium shadow-soft active:scale-95 transition-colors"
+                        >
+                          {lesson.exercises[0].words[idx]}
+                        </motion.div>
+                      </Reorder.Item>
+                    ))}
+                  </Reorder.Group>
 
                   <div className="pt-2 border-t border-border">
                     <button

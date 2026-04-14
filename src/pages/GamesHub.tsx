@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Gamepad2, Zap, Puzzle, ChevronRight } from "lucide-react";
+import { Gamepad2, Zap, Puzzle, ChevronRight, Hammer, Lightbulb, Volume2 } from "lucide-react";
 
 const games = [
   {
@@ -21,6 +21,60 @@ const games = [
     path: "/games/speed",
     color: "text-warning",
   },
+  {
+    id: "assemble",
+    icon: Hammer,
+    emoji: "🔨",
+    title: "Thợ Mộc Ghép Chữ",
+    desc: "Ghép các bộ thủ nhỏ thành chữ Hán theo nguyên tắc Hội Ý",
+    path: "/games/hanzi/assemble",
+    color: "text-blue-500",
+  },
+  {
+    id: "meaning",
+    icon: Lightbulb,
+    emoji: "💡",
+    title: "Phản Xạ Bộ Thủ",
+    desc: "Nhìn chữ hoặc bộ thủ và rèn luyện phản xạ nhanh ý nghĩa",
+    path: "/games/hanzi/meaning",
+    color: "text-amber-500",
+  },
+  {
+    id: "phonetic",
+    icon: Volume2,
+    emoji: "🔊",
+    title: "Bắt Mạch Hình Thanh",
+    desc: "Khám phá bộ thủ mượn âm tạo ra phát âm cho chữ Hán",
+    path: "/games/hanzi/phonetic",
+    color: "text-emerald-500",
+  },
+  {
+    id: "sentence",
+    icon: Puzzle,
+    emoji: "📝",
+    title: "Xếp Câu (Thợ Xây Ngữ Pháp)",
+    desc: "Sắp xếp từ Hán thành câu chuẩn ngữ pháp",
+    path: "/games/sentence",
+    color: "text-indigo-500",
+  },
+  {
+    id: "picture",
+    icon: Lightbulb,
+    emoji: "🖼️",
+    title: "Đuổi Hình Bắt Chữ",
+    desc: "Nhìn hình đoán từ vựng tiếng Trung",
+    path: "/games/picture",
+    color: "text-pink-500",
+  },
+  {
+    id: "dictation",
+    icon: Volume2,
+    emoji: "🎧",
+    title: "Nghe Tã (Dictation)",
+    desc: "Luyện nghe nói siêu tốc và nhận mặt chữ",
+    path: "/games/dictation",
+    color: "text-violet-500",
+  },
 ];
 
 const GamesHub = () => {
@@ -34,7 +88,7 @@ const GamesHub = () => {
           <p className="text-sm text-muted-foreground mt-1">Học mà chơi, chơi mà học</p>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-3 pb-8">
           {games.map((game, i) => (
             <motion.button
               key={game.id}
@@ -55,10 +109,6 @@ const GamesHub = () => {
               <ChevronRight size={18} className="text-muted-foreground" />
             </motion.button>
           ))}
-        </div>
-
-        <div className="bg-primary/5 rounded-2xl p-5 border border-primary/20 text-center animate-fade-in" style={{ animationDelay: "0.2s" }}>
-          <p className="text-sm text-muted-foreground">🔜 Sắp ra mắt: Xếp câu, Đuổi hình bắt chữ, Dictation...</p>
         </div>
       </div>
     </div>
