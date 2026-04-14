@@ -48,7 +48,13 @@ const OnboardingLevel = () => {
         <div className="mt-10 h-16">
           {selected !== null ? (
             <button
-              onClick={() => navigate("/onboarding/goal")}
+              onClick={() => {
+                if (selected === 2) {
+                  navigate("/exam/hsk"); // Đi làm bài kiểm tra HSK đánh giá năng lực
+                } else {
+                  navigate("/onboarding/goal");
+                }
+              }}
               className="w-full bg-primary text-primary-foreground py-4 rounded-2xl font-bold text-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 shadow-soft animate-fade-in flex items-center justify-center gap-2"
             >
               Tiếp tục 🚀
