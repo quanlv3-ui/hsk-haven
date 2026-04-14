@@ -6,84 +6,84 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 220 13% 10%;
+    --background: 340 40% 97%;
+    --foreground: 340 20% 12%;
     --card: 0 0% 100%;
-    --card-foreground: 220 13% 10%;
+    --card-foreground: 340 20% 12%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 13% 10%;
-    --primary: 239 84% 67%;
+    --popover-foreground: 340 20% 12%;
+    --primary: 340 82% 65%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 14% 96%;
-    --secondary-foreground: 220 13% 10%;
-    --muted: 220 14% 96%;
-    --muted-foreground: 220 9% 46%;
-    --accent: 220 14% 96%;
-    --accent-foreground: 220 13% 10%;
+    --secondary: 340 30% 95%;
+    --secondary-foreground: 340 20% 12%;
+    --muted: 340 20% 95%;
+    --muted-foreground: 340 10% 46%;
+    --accent: 340 40% 93%;
+    --accent-foreground: 340 20% 12%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
-    --success: 142 71% 45%;
+    --success: 152 60% 48%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
     --easy: 217 91% 60%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 239 84% 67%;
-    --radius: 0.75rem;
+    --border: 340 20% 90%;
+    --input: 340 20% 90%;
+    --ring: 340 82% 65%;
+    --radius: 1rem;
 
     /* HSK Level Colors */
-    --hsk-1: 142 71% 45%;
+    --hsk-1: 152 60% 48%;
     --hsk-2: 217 91% 60%;
-    --hsk-3: 258 90% 66%;
+    --hsk-3: 280 67% 60%;
     --hsk-4: 38 92% 50%;
     --hsk-5: 0 84% 60%;
-    --hsk-6: 330 81% 60%;
-    --hsk-7: 239 84% 67%;
+    --hsk-6: 340 82% 65%;
+    --hsk-7: 270 60% 55%;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 340 30% 97%;
+    --sidebar-foreground: 340 20% 20%;
+    --sidebar-primary: 340 82% 65%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 340 40% 93%;
+    --sidebar-accent-foreground: 340 20% 12%;
+    --sidebar-border: 340 20% 90%;
+    --sidebar-ring: 340 82% 65%;
   }
 
   .dark {
-    --background: 220 13% 8%;
-    --foreground: 210 20% 98%;
-    --card: 220 13% 12%;
-    --card-foreground: 210 20% 98%;
-    --popover: 220 13% 12%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 239 84% 67%;
+    --background: 340 15% 8%;
+    --foreground: 340 20% 95%;
+    --card: 340 15% 12%;
+    --card-foreground: 340 20% 95%;
+    --popover: 340 15% 12%;
+    --popover-foreground: 340 20% 95%;
+    --primary: 340 82% 65%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 13% 18%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 220 13% 18%;
-    --muted-foreground: 220 9% 64%;
-    --accent: 220 13% 18%;
-    --accent-foreground: 210 20% 98%;
+    --secondary: 340 15% 18%;
+    --secondary-foreground: 340 20% 95%;
+    --muted: 340 15% 18%;
+    --muted-foreground: 340 10% 60%;
+    --accent: 340 15% 20%;
+    --accent-foreground: 340 20% 95%;
     --destructive: 0 62% 30%;
     --destructive-foreground: 0 0% 100%;
-    --success: 142 71% 45%;
+    --success: 152 60% 48%;
     --success-foreground: 0 0% 100%;
     --warning: 38 92% 50%;
     --warning-foreground: 0 0% 100%;
     --easy: 217 91% 60%;
-    --border: 220 13% 20%;
-    --input: 220 13% 20%;
-    --ring: 239 84% 67%;
-    --sidebar-background: 220 13% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+    --border: 340 15% 20%;
+    --input: 340 15% 20%;
+    --ring: 340 82% 65%;
+    --sidebar-background: 340 15% 10%;
+    --sidebar-foreground: 340 10% 90%;
+    --sidebar-primary: 340 82% 65%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 13% 15%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 220 13% 20%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 340 15% 16%;
+    --sidebar-accent-foreground: 340 10% 90%;
+    --sidebar-border: 340 15% 20%;
+    --sidebar-ring: 340 82% 65%;
   }
 }
 
@@ -93,6 +93,8 @@
   }
   body {
     @apply bg-background text-foreground font-sans antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Plus Jakarta Sans', sans-serif;
@@ -119,6 +121,11 @@
   .hanzi-small {
     @apply hanzi-display;
     font-size: 24px;
+  }
+
+  /* Apple-like glass card */
+  .glass-card {
+    @apply bg-card/70 backdrop-blur-xl border border-border/50 shadow-sm;
   }
 }
 
