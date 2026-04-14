@@ -16,7 +16,7 @@ const HskExam = () => {
   const [showFeedback, setShowFeedback] = useState(false);
   const [timer] = useState(30 * 60); // 30 min
   const [writingAnswers, setWritingAnswers] = useState<string[]>([]);
-  const [writingInput, setWritingInput] = useState<string[]>([]);
+  const [writingInput, setWritingInput] = useState<number[][]>([]);
 
   const totalQuestions = hskExamSections.listening.length +
     hskExamSections.reading.reduce((a, r) => a + r.questions.length, 0) +
@@ -218,7 +218,7 @@ const HskExam = () => {
             ))}
 
             <button
-              onClick={() => { setPhase("writing"); setCurrentQ(0); setWritingInput(hskExamSections.writing.map(() => "")); }}
+              onClick={() => { setPhase("writing"); setCurrentQ(0); setWritingInput(hskExamSections.writing.map(() => [])); }}
               className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold hover:opacity-90 active:scale-[0.98] transition-all duration-300"
             >
               Tiếp: Phần Viết <ChevronRight size={16} className="inline" />
@@ -234,36 +234,75 @@ const HskExam = () => {
             </div>
 
             {hskExamSections.writing.map((w, wi) => (
-              <div key={w.id} className="bg-card rounded-2xl border border-border p-5 shadow-soft space-y-3">
-                <p className="text-sm text-muted-foreground">{w.instruction}</p>
-                <p className="text-xs text-muted-foreground">{w.translation}</p>
-                <div className="flex flex-wrap gap-2">
-                  {w.words.sort(() => Math.random() - 0.5).map((word) => (
-                    <button
-                      key={word}
-                      onClick={() => {
-                        const newInput = [...(writingInput || [])];
-                        newInput[wi] = (newInput[wi] || "") + word;
-                        setWritingInput(newInput);
-                      }}
-                      className="px-3 py-2 rounded-xl bg-muted font-hanzi text-sm hover:bg-primary/10 hover:text-primary active:scale-95 transition-all duration-200"
-                    >
-                      {word}
-                    </button>
-                  ))}
+              <div key={w.id} className="bg-card rounded-3xl border border-border p-5 shadow-soft space-y-5">
+                <div>
+                  <p className="text-base font-bold text-foreground">✍️ {w.instruction}</p>
+                  <p className="text-sm text-muted-foreground mt-1">{w.translation}</p>
                 </div>
-                {writingInput?.[wi] && (
-                  <div className="flex items-center gap-2">
-                    <p className="font-hanzi text-foreground flex-1">{writingInput[wi]}</p>
-                    <button onClick={() => { const n = [...writingInput]; n[wi] = ""; setWritingInput(n); }} className="p-1 rounded hover:bg-muted"><X size={14} /></button>
-                  </div>
-                )}
+
+                {/* Answer Pool */}
+                <div className="min-h-[72px] p-3 rounded-2xl border-2 border-dashed border-border bg-muted/30 flex flex-wrap gap-2 items-center">
+                  {(writingInput?.[wi]?.length || 0) === 0 && (
+                    <span className="text-muted-foreground text-sm px-2 animate-pulse">
+                      Nhấn vào các từ bên dưới...
+                    </span>
+                  )}
+                  <AnimatePresence>
+                    {(writingInput?.[wi] || []).map((idx) => (
+                      <motion.button
+                        layout
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        exit={{ scale: 0.8, opacity: 0 }}
+                        key={`ans-${wi}-${idx}`}
+                        onClick={() => {
+                          const n = [...writingInput];
+                          n[wi] = n[wi].filter((i) => i !== idx);
+                          setWritingInput(n);
+                        }}
+                        className="px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-hanzi text-lg font-medium shadow-soft hover:bg-primary/90 active:scale-95 transition-all"
+                      >
+                        {w.words[idx]}
+                      </motion.button>
+                    ))}
+                  </AnimatePresence>
+                </div>
+
+                {/* Available Words Pool */}
+                <div className="flex flex-wrap gap-2 min-h-[60px] p-1">
+                  <AnimatePresence>
+                    {w.words.map((word, idx) => {
+                      if ((writingInput?.[wi] || []).includes(idx)) return null;
+                      return (
+                        <motion.button
+                          layout
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.8, opacity: 0 }}
+                          key={`avail-${wi}-${idx}`}
+                          onClick={() => {
+                            const n = [...writingInput];
+                            n[wi] = [...(n[wi] || []), idx];
+                            setWritingInput(n);
+                          }}
+                          className="px-4 py-2.5 rounded-xl bg-card border-2 border-border text-foreground font-hanzi text-lg font-medium shadow-sm hover:border-primary/40 hover:-translate-y-1 hover:shadow-soft active:scale-95 transition-all"
+                        >
+                          {word}
+                        </motion.button>
+                      );
+                    })}
+                  </AnimatePresence>
+                </div>
               </div>
             ))}
 
             <button
-              onClick={() => { setWritingAnswers(writingInput || []); setPhase("results"); }}
-              className="w-full py-3 rounded-2xl bg-primary text-primary-foreground font-semibold hover:opacity-90 active:scale-[0.98] transition-all duration-300"
+              onClick={() => {
+                const finalAnswers = writingInput.map((arr, idx) => arr.map(i => hskExamSections.writing[idx].words[i]).join(""));
+                setWritingAnswers(finalAnswers); 
+                setPhase("results"); 
+              }}
+              className="w-full py-4 rounded-2xl bg-primary text-primary-foreground font-bold text-lg hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 shadow-soft"
             >
               Nộp bài
             </button>

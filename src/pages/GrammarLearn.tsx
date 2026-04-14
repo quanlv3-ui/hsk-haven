@@ -8,10 +8,16 @@ import HSKBadge from "@/components/shared/HSKBadge";
 const GrammarLearn = () => {
   const navigate = useNavigate();
   const [selectedLesson, setSelectedLesson] = useState<string | null>(null);
-  const [exerciseAnswer, setExerciseAnswer] = useState<string>("");
+  const [answerIndexes, setAnswerIndexes] = useState<number[]>([]);
   const [showResult, setShowResult] = useState<boolean | null>(null);
 
   const lesson = grammarLessons.find((l) => l.id === selectedLesson);
+
+  const checkAnswer = () => {
+    if (!lesson) return;
+    const currentAnswer = answerIndexes.map((i) => lesson.exercises[0].words[i]).join("");
+    setShowResult(currentAnswer === lesson.exercises[0].correct);
+  };
 
   return (
     <div className="min-h-screen pb-20 md:pb-8">
@@ -40,7 +46,7 @@ const GrammarLearn = () => {
                   transition={{ delay: i * 0.05 }}
                 >
                   <button
-                    onClick={() => { setSelectedLesson(g.id); setShowResult(null); setExerciseAnswer(""); }}
+                    onClick={() => { setSelectedLesson(g.id); setShowResult(null); setAnswerIndexes([]); }}
                     className="w-full bg-card rounded-2xl border border-border p-4 text-left shadow-soft hover:shadow-xl hover:-translate-y-1 hover:scale-[1.02] active:scale-95 transition-all duration-300 group"
                   >
                     <div className="flex items-center justify-between">
@@ -87,47 +93,86 @@ const GrammarLearn = () => {
 
               {/* Exercise */}
               {lesson.exercises.length > 0 && (
-                <div className="bg-card rounded-2xl border border-border p-5 shadow-soft space-y-4">
-                  <p className="text-sm font-semibold text-foreground">✏️ Bài tập: Sắp xếp thành câu</p>
-                  <p className="text-xs text-muted-foreground">{lesson.exercises[0].vietnamese}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {lesson.exercises[0].words.map((w) => (
-                      <button
-                        key={w}
-                        onClick={() => setExerciseAnswer((prev) => prev ? prev + w : w)}
-                        className="px-3 py-2 rounded-xl bg-muted text-foreground text-sm font-hanzi hover:bg-primary/10 hover:text-primary active:scale-95 transition-all duration-200"
-                      >
-                        {w}
-                      </button>
-                    ))}
+                <div className="bg-card rounded-3xl border border-border p-5 shadow-soft space-y-5">
+                  <div>
+                    <p className="text-base font-bold text-foreground">✏️ Sắp xếp thành câu</p>
+                    <p className="text-sm text-muted-foreground mt-1">{lesson.exercises[0].vietnamese}</p>
                   </div>
-                  {exerciseAnswer && (
-                    <div className="flex items-center gap-2">
-                      <p className="font-hanzi text-foreground flex-1">{exerciseAnswer}</p>
-                      <button
-                        onClick={() => setExerciseAnswer("")}
-                        className="p-1.5 rounded-lg hover:bg-muted transition-colors"
-                      >
-                        <X size={16} />
-                      </button>
-                    </div>
-                  )}
-                  <button
-                    onClick={() => setShowResult(exerciseAnswer === lesson.exercises[0].correct)}
-                    disabled={!exerciseAnswer}
-                    className="w-full py-3 rounded-xl bg-primary text-primary-foreground font-semibold text-sm disabled:opacity-50 hover:opacity-90 active:scale-[0.98] transition-all duration-300"
-                  >
-                    Kiểm tra
-                  </button>
+                  
+                  {/* Answer Pool */}
+                  <div className="min-h-[72px] p-3 rounded-2xl border-2 border-dashed border-border bg-muted/30 flex flex-wrap gap-2 items-center">
+                    {answerIndexes.length === 0 && (
+                      <span className="text-muted-foreground text-sm px-2 animate-pulse">
+                        Nhấn vào các từ bên dưới để ghép câu...
+                      </span>
+                    )}
+                    <AnimatePresence>
+                      {answerIndexes.map((idx) => (
+                        <motion.button
+                          layout
+                          initial={{ scale: 0.8, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.8, opacity: 0 }}
+                          key={`ans-${idx}`}
+                          onClick={() => setAnswerIndexes((prev) => prev.filter((i) => i !== idx))}
+                          className="px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-hanzi text-lg font-medium shadow-soft hover:bg-primary/90 active:scale-95 transition-all"
+                        >
+                          {lesson.exercises[0].words[idx]}
+                        </motion.button>
+                      ))}
+                    </AnimatePresence>
+                  </div>
+
+                  {/* Available Words Pool */}
+                  <div className="flex flex-wrap gap-2 min-h-[60px] p-1">
+                    <AnimatePresence>
+                      {lesson.exercises[0].words.map((w, idx) => {
+                        if (answerIndexes.includes(idx)) return null;
+                        return (
+                          <motion.button
+                            layout
+                            initial={{ scale: 0.8, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.8, opacity: 0 }}
+                            key={`avail-${idx}`}
+                            onClick={() => setAnswerIndexes((prev) => [...prev, idx])}
+                            className="px-4 py-2.5 rounded-xl bg-card border-2 border-border text-foreground font-hanzi text-lg font-medium shadow-sm hover:border-primary/40 hover:-translate-y-1 hover:shadow-soft active:scale-95 transition-all"
+                          >
+                            {w}
+                          </motion.button>
+                        );
+                      })}
+                    </AnimatePresence>
+                  </div>
+
+                  <div className="pt-2 border-t border-border">
+                    <button
+                      onClick={checkAnswer}
+                      disabled={answerIndexes.length === 0}
+                      className="w-full py-3.5 rounded-2xl bg-primary text-primary-foreground font-bold text-lg disabled:opacity-50 disabled:active:scale-100 hover:-translate-y-1 hover:shadow-lg active:scale-[0.98] transition-all duration-300 flex items-center justify-center gap-2"
+                    >
+                      Kiểm tra <Check size={20} />
+                    </button>
+                  </div>
+
                   <AnimatePresence>
                     {showResult !== null && (
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className={`p-3 rounded-xl flex items-center gap-2 ${showResult ? "bg-success/10 text-success" : "bg-destructive/10 text-destructive"}`}
+                        initial={{ opacity: 0, h: 0, y: 10 }}
+                        animate={{ opacity: 1, h: "auto", y: 0 }}
+                        className={`p-4 rounded-2xl flex items-start gap-3 mt-4 ${showResult ? "bg-success/15 text-success-foreground border border-success/30" : "bg-destructive/15 text-destructive-foreground border border-destructive/30"}`}
                       >
-                        {showResult ? <Check size={18} /> : <X size={18} />}
-                        <span className="text-sm font-medium">{showResult ? "Chính xác! 🎉" : `Sai rồi. Đáp án: ${lesson.exercises[0].correct}`}</span>
+                        <div className={`mt-0.5 rounded-full p-1 bg-background shadow-sm ${showResult ? "text-success" : "text-destructive"}`}>
+                          {showResult ? <Check size={16} /> : <X size={16} />}
+                        </div>
+                        <div>
+                          <p className="font-bold text-base">{showResult ? "Chính xác! Cực kỳ xuất sắc! 🎉" : "Chưa đúng mất rồi."}</p>
+                          {!showResult && (
+                            <p className="text-sm mt-1 opacity-90">
+                              Đáp án đúng: <span className="font-hanzi font-bold text-base ml-1">{lesson.exercises[0].correct}</span>
+                            </p>
+                          )}
+                        </div>
                       </motion.div>
                     )}
                   </AnimatePresence>
