@@ -93,32 +93,53 @@ const Dashboard = () => {
             <span className="text-4xl animate-float">👋</span>
           </div>
 
-          {/* Hero card - Thẻ chính */}
+          {/* Main Learning Path - Lộ trình cho người mới */}
           <div
-            className="relative overflow-hidden bg-gradient-to-br from-primary to-[#ff6b9d] rounded-[2.5rem] p-8 text-primary-foreground shadow-glow animate-fade-in"
-            style={{ animationDelay: "0.05s" }}
+            onClick={() => navigate("/levels")}
+            className="cursor-pointer relative overflow-hidden bg-gradient-to-br from-indigo-500 via-purple-500 to-fuchsia-500 rounded-[2.5rem] p-8 text-white shadow-glow animate-fade-in group hover:-translate-y-2 hover:shadow-2xl transition-all duration-300"
+            style={{ animationDelay: "0.02s" }}
           >
-            <div className="absolute top-4 right-4 opacity-30">
-              <Sparkles size={80} />
-            </div>
-            <div className="absolute -bottom-6 -right-6 opacity-20">
-              <Target size={120} />
-            </div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white opacity-10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-700"></div>
             
-            <span className="inline-block px-3 py-1 bg-white/20 rounded-full text-xs font-bold uppercase tracking-wider mb-4 border border-white/30">
-              Nhiệm vụ ưu tiên
+            <span className="inline-block px-4 py-1.5 bg-white/20 rounded-full text-xs font-extrabold uppercase tracking-widest mb-5 border border-white/30 backdrop-blur-sm">
+              Lộ trình đang học
             </span>
-            <p className="text-5xl font-black mt-1 mb-2 tracking-tight">{todayStats.cardsDue} thẻ</p>
-            <p className="text-base opacity-90 font-medium mb-8">
-              {todayStats.newCards} thẻ mới + {todayStats.cardsDue - todayStats.newCards} thẻ ôn lại · ~{todayStats.studyMinutes} phút
+            <p className="text-4xl md:text-5xl font-black mt-1 mb-3 tracking-tight">HSK 1 - Bài 3</p>
+            <p className="text-base md:text-lg opacity-90 font-medium mb-8">
+              "Bạn tên là gì?" • 15 từ vựng • 2 ngữ pháp
             </p>
             
             <button
-              onClick={() => navigate("/study/flashcard")}
-              className="bg-background text-primary font-bold px-8 py-4 rounded-2xl flex items-center gap-3 shadow-soft hover:shadow-xl active:scale-[0.97] hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto justify-center text-lg"
+              className="bg-white text-indigo-600 font-bold px-8 py-4 rounded-2xl flex items-center gap-3 shadow-soft group-hover:shadow-xl active:scale-[0.97] transition-all duration-300 w-full sm:w-auto justify-center text-lg"
             >
-              Bắt đầu học ngay <ArrowRight size={22} className="animate-pulse" />
+              Tiếp tục học ngay <ArrowRight size={22} className="group-hover:translate-x-1 transition-transform" />
             </button>
+          </div>
+
+          {/* Flashcard Ôn tập (Secondary) */}
+          <div
+             className="relative overflow-hidden bg-gradient-to-br from-primary to-[#ff6b9d] rounded-3xl p-6 text-primary-foreground shadow-soft animate-fade-in group cursor-pointer hover:-translate-y-1 hover:shadow-soft-lg transition-all duration-300"
+             style={{ animationDelay: "0.05s" }}
+             onClick={() => navigate("/study/flashcard")}
+          >
+             <div className="absolute top-2 right-4 opacity-30">
+              <Sparkles size={60} />
+            </div>
+            <div className="flex items-center justify-between">
+               <div>
+                  <span className="inline-block px-2 py-1 bg-white/20 rounded-lg text-[10px] font-bold uppercase tracking-wider mb-2 border border-white/30">
+                    Nhiệm vụ ôn tập
+                  </span>
+                  <div className="flex items-end gap-2">
+                     <p className="text-3xl font-black tracking-tight">{todayStats.cardsDue}</p>
+                     <p className="text-sm opacity-90 font-medium pb-1 hidden sm:block">thẻ cần ôn ({todayStats.newCards} thẻ mới)</p>
+                     <p className="text-sm opacity-90 font-medium pb-1 sm:hidden">thẻ ôn</p>
+                  </div>
+               </div>
+               <button className="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center flex-shrink-0 group-hover:scale-110 active:scale-95 transition-transform duration-300 shadow-sm relative z-10">
+                  <ArrowRight size={24} />
+               </button>
+            </div>
           </div>
 
           {/* Quick actions (Lưới chức năng) */}
