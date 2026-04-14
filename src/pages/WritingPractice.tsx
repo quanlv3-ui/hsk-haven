@@ -4,7 +4,7 @@ import { user } from "@/data/mockData";
 
 const WritingPractice = () => {
   const navigate = useNavigate();
-  const isLocked = user.plan !== "pro";
+  const isLocked = (user.plan as string) !== "pro";
 
   return (
     <div className="min-h-screen bg-background flex flex-col">
