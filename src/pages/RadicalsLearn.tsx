@@ -664,7 +664,7 @@ const RadicalsLearn = () => {
               <>
                 {prevTab ? (
                   <button
-                    onClick={() => { setActiveTab(prevTab); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                    onClick={() => { setActiveTab(prevTab as any); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                     className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-card border border-border shadow-sm flex items-center justify-center gap-3 text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-all font-medium group"
                   >
                     <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
@@ -674,7 +674,7 @@ const RadicalsLearn = () => {
 
                 {nextTab ? (
                   <button
-                    onClick={() => { setActiveTab(nextTab); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                    onClick={() => { setActiveTab(nextTab as any); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                     className="w-full sm:w-auto px-6 py-3 rounded-2xl bg-primary text-primary-foreground shadow-md hover:shadow-lg hover:-translate-y-0.5 flex items-center justify-center gap-3 transition-all font-bold group"
                   >
                     Tiếp tục: {tabTitles[nextTab]}

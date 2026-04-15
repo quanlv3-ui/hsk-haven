@@ -175,8 +175,8 @@ const GrammarLearn = () => {
                   <AnimatePresence>
                     {showResult !== null && (
                       <motion.div
-                        initial={{ opacity: 0, h: 0, y: 10 }}
-                        animate={{ opacity: 1, h: "auto", y: 0 }}
+                        initial={{ opacity: 0, height: 0, y: 10 }}
+                        animate={{ opacity: 1, height: "auto", y: 0 }}
                         className={`p-4 rounded-2xl flex items-start gap-3 mt-4 ${showResult ? "bg-success/15 text-success-foreground border border-success/30" : "bg-destructive/15 text-destructive-foreground border border-destructive/30"}`}
                       >
                         <div className={`mt-0.5 rounded-full p-1 bg-background shadow-sm ${showResult ? "text-success" : "text-destructive"}`}>

@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect } from "react";
-import { ArrowLeft, ArrowRight, RotateCcw, AlertTriangle, Trophy } from "lucide-react";
+import { ArrowLeft, ArrowRight, RotateCcw, AlertTriangle, Trophy, CheckCircle2, XCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { scenarios } from "../data/mockData";
