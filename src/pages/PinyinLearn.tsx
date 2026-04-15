@@ -1,8 +1,9 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Volume2, Wand2, Music, BookOpen, Puzzle, CheckCircle2, XCircle, ChevronRight } from "lucide-react";
+import { ArrowLeft, Volume2, Wand2, Music, BookOpen, Puzzle, CheckCircle2, XCircle, ChevronRight, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { pinyinInitials, pinyinTones, pinyinFinals } from "@/data/mockData";
+import { useBeginnerProgress } from "@/hooks/useBeginnerProgress";
 
 /* ——— helpers ——— */
 const getMarkedPinyin = (initial: string, final: string, tone: number) => {
@@ -57,6 +58,7 @@ type TabKey = "tones" | "initials" | "finals" | "combiner";
 
 const PinyinLearn = () => {
   const navigate = useNavigate();
+  const { completeStep } = useBeginnerProgress();
   const [activeTab, setActiveTab] = useState<TabKey>("tones");
   const [selectedTone, setSelectedTone] = useState<number | null>(null);
   const [selectedInitial, setSelectedInitial] = useState<string | null>(null);
@@ -164,22 +166,6 @@ const PinyinLearn = () => {
         </motion.div>
 
         {/* Progress bar for content tabs */}
-        {progress && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="space-y-1">
-            <div className="flex justify-between text-[11px] text-muted-foreground font-medium">
-              <span>Tiến độ</span>
-              <span>{progress.done}/{progress.total} đã xem</span>
-            </div>
-            <div className="h-2 rounded-full bg-muted overflow-hidden">
-              <motion.div
-                className="h-full rounded-full bg-primary"
-                initial={{ width: 0 }}
-                animate={{ width: `${(progress.done / progress.total) * 100}%` }}
-                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              />
-            </div>
-          </motion.div>
-        )}
 
         {/* Content */}
         <AnimatePresence mode="wait">
@@ -192,9 +178,7 @@ const PinyinLearn = () => {
                 <button
                   key={tone.tone}
                   onClick={() => handleToneTap(tone.tone)}
-                  className={`w-full bg-card rounded-2xl border p-4 text-left shadow-soft hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 group ${
-                    listenedTones.has(tone.tone) ? "border-success/30" : "border-border hover:border-primary/40"
-                  }`}
+                  className="w-full bg-card rounded-2xl border border-border p-4 text-left shadow-soft hover:shadow-xl hover:-translate-y-1 active:scale-[0.98] transition-all duration-300 group"
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
@@ -211,7 +195,6 @@ const PinyinLearn = () => {
                       </div>
                     </div>
                     <div className="flex items-center gap-2">
-                      {listenedTones.has(tone.tone) && <CheckCircle2 size={14} className="text-success" />}
                       <Volume2 size={18} className="text-muted-foreground group-hover:text-primary transition-colors" />
                     </div>
                   </div>
@@ -291,13 +274,10 @@ const PinyinLearn = () => {
                   <button
                     key={item.letter}
                     onClick={() => handleInitialTap(item.letter)}
-                    className={`bg-card rounded-2xl border p-3 text-center shadow-soft hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 relative ${
-                      selectedInitial === item.letter ? "border-primary bg-primary/5" : listenedInitials.has(item.letter) ? "border-success/30" : "border-border hover:border-primary/40"
+                    className={`bg-card rounded-2xl border border-border p-3 text-center shadow-soft hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300 relative ${
+                      selectedInitial === item.letter ? "border-primary bg-primary/5" : ""
                     }`}
                   >
-                    {listenedInitials.has(item.letter) && (
-                      <CheckCircle2 size={10} className="absolute top-1.5 right-1.5 text-success" />
-                    )}
                     <p className="text-xl font-bold text-foreground">{item.letter}</p>
                     <p className="text-xs text-muted-foreground mt-0.5 font-hanzi">{item.example}</p>
                   </button>
@@ -344,12 +324,9 @@ const PinyinLearn = () => {
                       <button
                         key={f}
                         onClick={() => handleFinalTap(f)}
-                        className={`rounded-xl py-3 text-center text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 relative ${
-                          listenedFinals.has(f) ? "bg-primary/15 text-primary" : "bg-muted text-foreground hover:bg-primary/10 hover:text-primary"
-                        }`}
+                        className="rounded-xl py-3 text-center text-lg font-semibold transition-all duration-300 hover:scale-105 active:scale-95 relative bg-muted text-foreground hover:bg-primary/10 hover:text-primary"
                       >
                         {f}
-                        {listenedFinals.has(f) && <CheckCircle2 size={10} className="absolute top-1 right-1 text-success" />}
                       </button>
                     ))}
                   </div>
@@ -429,6 +406,16 @@ const PinyinLearn = () => {
                     ))}
                   </div>
                 </div>
+              </div>
+
+              {/* Complete step button */}
+              <div className="text-center py-4">
+                <button
+                  onClick={() => { completeStep(0); navigate("/learn"); }}
+                  className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300"
+                >
+                  <Sparkles size={18} /> Hoàn thành bước 1 <ChevronRight size={16} />
+                </button>
               </div>
             </motion.div>
           )}

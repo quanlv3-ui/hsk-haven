@@ -25,6 +25,7 @@ import Achievements from "./pages/Achievements";
 import Settings from "./pages/Settings";
 import Subscription from "./pages/Subscription";
 import WritingPractice from "./pages/WritingPractice";
+import BasicVocab from "./pages/BasicVocab";
 import LevelComplete from "./pages/LevelComplete";
 import StreakMilestone from "./pages/StreakMilestone";
 import LearnHub from "./pages/LearnHub";
@@ -83,6 +84,7 @@ const App = () => (
           <Route path="/learn/pinyin" element={<PinyinLearn />} />
           <Route path="/learn/radicals" element={<RadicalsLearn />} />
           <Route path="/learn/grammar" element={<GrammarLearn />} />
+          <Route path="/learn/basic-vocab" element={<BasicVocab />} />
           <Route path="/learn/scenarios" element={<ScenarioLearn />} />
           <Route path="/exam/hsk" element={<HskExam />} />
           <Route path="/games" element={<GamesHub />} />

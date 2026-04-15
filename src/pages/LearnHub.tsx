@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BookOpen, Type, Layers, PenTool, MessageCircle, Map, Gamepad2, Headphones, GraduationCap, ChevronRight, Lock, Sparkles, CheckCircle2 } from "lucide-react";
+import { useBeginnerProgress } from "@/hooks/useBeginnerProgress";
 
 const beginnerSteps = [
   { icon: Type, label: "Học Pinyin", desc: "Thanh điệu, phụ âm, nguyên âm", path: "/learn/pinyin", color: "text-primary" },
   { icon: Layers, label: "Bộ thủ", desc: "50 bộ thủ thường gặp nhất", path: "/learn/radicals", color: "text-primary" },
   { icon: PenTool, label: "Tập viết chữ Hán", desc: "Stroke order từng nét", path: "/practice/writing", color: "text-primary" },
-  { icon: BookOpen, label: "Từ vựng cơ bản", desc: "100 từ HSK1 đầu tiên", path: "/study", color: "text-primary" },
+  { icon: BookOpen, label: "Từ vựng cơ bản", desc: "20 chữ Hán đầu tiên cho người mới", path: "/learn/basic-vocab", color: "text-primary" },
 ];
 
 const advancedSections = [
@@ -31,11 +31,8 @@ const advancedSections = [
 
 const LearnHub = () => {
   const navigate = useNavigate();
-  // Simulated progress — in production this comes from DB
-  const [completedSteps] = useState<number[]>([]);
-  const currentStep = completedSteps.length;
-  const progressPercent = (currentStep / beginnerSteps.length) * 100;
-  const isUnlocked = currentStep >= 1; // unlock advanced after step 1
+  const { completedSteps, currentStep, progressPercent } = useBeginnerProgress();
+  const isUnlocked = completedSteps.length >= beginnerSteps.length;
 
   return (
     <div className="min-h-screen pb-20 md:pb-8">
@@ -78,26 +75,28 @@ const LearnHub = () => {
             {beginnerSteps.map((step, i) => {
               const isDone = completedSteps.includes(i);
               const isCurrent = i === currentStep;
+              const canClick = isCurrent || isDone; // Can click current or completed steps
               return (
                 <motion.button
                   key={step.path}
                   initial={{ opacity: 0, x: -12 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.4, delay: 0.1 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
-                  onClick={() => navigate(step.path)}
-                  className={`w-full rounded-2xl p-3.5 flex items-center gap-3.5 transition-all duration-300 group
+                  onClick={() => canClick && navigate(step.path)}
+                  disabled={!canClick}
+                  className={`w-full rounded-2xl p-3.5 flex items-center gap-3.5 transition-all duration-300 group disabled:cursor-not-allowed
                     ${isCurrent
-                      ? "bg-primary/15 border-2 border-primary shadow-md hover:shadow-lg hover:-translate-y-1"
+                      ? "bg-primary/15 border-2 border-primary shadow-md hover:shadow-lg hover:-translate-y-1 active:scale-[0.98]"
                       : isDone
-                        ? "bg-success/10 border border-success/30 opacity-80"
-                        : "bg-card/60 border border-border/50 opacity-60 hover:opacity-80"
+                        ? "bg-card/60 border border-border/50 hover:shadow-md hover:-translate-y-1 active:scale-[0.98]"
+                        : "bg-card/60 border border-border/50 opacity-60"
                     }
-                    active:scale-[0.98]`}
+                    `}
                 >
-                  {/* Step number */}
-                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 text-sm font-bold transition-all duration-300
-                    ${isDone ? "bg-success text-success-foreground" : isCurrent ? "bg-primary text-primary-foreground group-hover:scale-110" : "bg-muted text-muted-foreground"}`}>
-                    {isDone ? <CheckCircle2 size={18} /> : i + 1}
+                  {/* Step icon */}
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 transition-all duration-300
+                    ${isCurrent ? "bg-primary text-primary-foreground group-hover:scale-110" : "bg-muted text-muted-foreground"}`}>
+                    <step.icon size={18} />
                   </div>
 
                   <div className="flex-1 text-left min-w-0">
