@@ -1,13 +1,13 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { BookOpen, Type, Layers, PenTool, MessageCircle, Map, Gamepad2, Headphones, GraduationCap, ChevronRight, Lock, Sparkles, CheckCircle2 } from "lucide-react";
+import { useBeginnerProgress } from "@/hooks/useBeginnerProgress";
 
 const beginnerSteps = [
   { icon: Type, label: "Học Pinyin", desc: "Thanh điệu, phụ âm, nguyên âm", path: "/learn/pinyin", color: "text-primary" },
   { icon: Layers, label: "Bộ thủ", desc: "50 bộ thủ thường gặp nhất", path: "/learn/radicals", color: "text-primary" },
   { icon: PenTool, label: "Tập viết chữ Hán", desc: "Stroke order từng nét", path: "/practice/writing", color: "text-primary" },
-  { icon: BookOpen, label: "Từ vựng cơ bản", desc: "100 từ HSK1 đầu tiên", path: "/study", color: "text-primary" },
+  { icon: BookOpen, label: "Từ vựng cơ bản", desc: "20 chữ Hán đầu tiên cho người mới", path: "/learn/basic-vocab", color: "text-primary" },
 ];
 
 const advancedSections = [
@@ -31,11 +31,8 @@ const advancedSections = [
 
 const LearnHub = () => {
   const navigate = useNavigate();
-  // Simulated progress — in production this comes from DB
-  const [completedSteps] = useState<number[]>([]);
-  const currentStep = completedSteps.length;
-  const progressPercent = (currentStep / beginnerSteps.length) * 100;
-  const isUnlocked = currentStep >= 1; // unlock advanced after step 1
+  const { completedSteps, currentStep, progressPercent } = useBeginnerProgress();
+  const isUnlocked = completedSteps.length >= beginnerSteps.length;
 
   return (
     <div className="min-h-screen pb-20 md:pb-8">

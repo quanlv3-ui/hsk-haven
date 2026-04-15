@@ -1,8 +1,9 @@
 import { useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, Volume2, Wand2, Music, BookOpen, Puzzle, CheckCircle2, XCircle, ChevronRight } from "lucide-react";
+import { ArrowLeft, Volume2, Wand2, Music, BookOpen, Puzzle, CheckCircle2, XCircle, ChevronRight, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { pinyinInitials, pinyinTones, pinyinFinals } from "@/data/mockData";
+import { useBeginnerProgress } from "@/hooks/useBeginnerProgress";
 
 /* ——— helpers ——— */
 const getMarkedPinyin = (initial: string, final: string, tone: number) => {
@@ -433,7 +434,26 @@ const PinyinLearn = () => {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Complete step button */}
+        <CompleteStepButton />
       </div>
+    </div>
+  );
+};
+
+const CompleteStepButton = () => {
+  const navigate = useNavigate();
+  const { completedSteps, completeStep } = useBeginnerProgress();
+  if (completedSteps.includes(0)) return null;
+  return (
+    <div className="text-center py-4">
+      <button
+        onClick={() => { completeStep(0); navigate("/learn"); }}
+        className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300"
+      >
+        <Sparkles size={18} /> Hoàn thành bước 1 <ChevronRight size={16} />
+      </button>
     </div>
   );
 };

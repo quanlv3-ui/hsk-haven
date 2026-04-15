@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { ArrowLeft, ArrowRight, Search, BookOpen, LibraryBig, PenTool, Lightbulb, Network, Puzzle, Volume2, Gamepad2, CheckCircle2, XCircle, RotateCcw, Trophy } from "lucide-react";
+import { ArrowLeft, ArrowRight, Search, BookOpen, LibraryBig, PenTool, Lightbulb, Network, Puzzle, Volume2, Gamepad2, CheckCircle2, XCircle, RotateCcw, Trophy, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { radicals, phoneticMatrices, ideogramEquations } from "@/data/mockData";
+import { useBeginnerProgress } from "@/hooks/useBeginnerProgress";
 
 // Simple wrapper to load CDN hanzi-writer and render animated strokes
 const AnimatedHanzi = ({ character, size = 48 }: { character: string, size?: number }) => {
@@ -685,7 +686,26 @@ const RadicalsLearn = () => {
             );
           })()}
         </div>
+
+        {/* Complete step button */}
+        <RadicalsCompleteButton />
       </div>
+    </div>
+  );
+};
+
+const RadicalsCompleteButton = () => {
+  const navigate = useNavigate();
+  const { completedSteps, completeStep } = useBeginnerProgress();
+  if (completedSteps.includes(1)) return null;
+  return (
+    <div className="text-center py-4">
+      <button
+        onClick={() => { completeStep(1); navigate("/learn"); }}
+        className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300"
+      >
+        <Sparkles size={18} /> Hoàn thành bước 2
+      </button>
     </div>
   );
 };
