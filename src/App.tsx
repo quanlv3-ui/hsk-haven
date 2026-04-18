@@ -29,6 +29,9 @@ import BasicVocab from "./pages/BasicVocab";
 import LevelComplete from "./pages/LevelComplete";
 import StreakMilestone from "./pages/StreakMilestone";
 import LearnHub from "./pages/LearnHub";
+import TopicsHub from "./pages/TopicsHub";
+import TopicDetail from "./pages/TopicDetail";
+import Bookmarks from "./pages/Bookmarks";
 import PinyinLearn from "./pages/PinyinLearn";
 import RadicalsLearn from "./pages/RadicalsLearn";
 import GrammarLearn from "./pages/GrammarLearn";
@@ -85,6 +88,9 @@ const App = () => (
           <Route path="/learn/radicals" element={<RadicalsLearn />} />
           <Route path="/learn/grammar" element={<GrammarLearn />} />
           <Route path="/learn/basic-vocab" element={<BasicVocab />} />
+          <Route path="/learn/topics" element={<TopicsHub />} />
+          <Route path="/learn/topics/:topicId" element={<TopicDetail />} />
+          <Route path="/learn/bookmarks" element={<Bookmarks />} />
           <Route path="/learn/scenarios" element={<ScenarioLearn />} />
           <Route path="/exam/hsk" element={<HskExam />} />
           <Route path="/games" element={<GamesHub />} />
