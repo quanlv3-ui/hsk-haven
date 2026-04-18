@@ -119,6 +119,9 @@ const LearnHub = () => {
           </div>
         </motion.div>
 
+        {/* Daily 5 words widget — always available */}
+        <DailyWordsCard />
+
         {/* Advanced Sections — locked/unlocked */}
         {advancedSections.map((section, si) => (
           <motion.div
