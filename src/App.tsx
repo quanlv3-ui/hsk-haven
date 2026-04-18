@@ -15,6 +15,8 @@ import OnboardingTry from "./pages/OnboardingTry";
 import OnboardingGoal from "./pages/OnboardingGoal";
 import Dashboard from "./pages/Dashboard";
 import StudyLevels from "./pages/StudyLevels";
+import HskCourse from "./pages/HskCourse";
+import HskLesson from "./pages/HskLesson";
 import FlashcardStudy from "./pages/FlashcardStudy";
 import StudyComplete from "./pages/StudyComplete";
 import { QuizSetup, QuizPlay, QuizResults } from "./pages/Quiz";
@@ -67,6 +69,8 @@ const App = () => (
           <Route path="/onboarding/goal" element={<OnboardingGoal />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/study" element={<StudyLevels />} />
+          <Route path="/study/hsk/:level" element={<HskCourse />} />
+          <Route path="/study/lesson/:lessonId" element={<HskLesson />} />
           <Route path="/study/flashcard" element={<FlashcardStudy />} />
           <Route path="/study/complete" element={<StudyComplete />} />
           <Route path="/practice/quiz/setup" element={<QuizSetup />} />

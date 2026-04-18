@@ -1,26 +1,46 @@
 import { useNavigate } from "react-router-dom";
-import { Lock } from "lucide-react";
+import { Lock, BookOpen, Calendar } from "lucide-react";
 import { hskLevels } from "@/data/mockData";
-import ProgressBar from "@/components/shared/ProgressBar";
+import { hskCourses, getCourse } from "@/data/hskCourseData";
+import { useHskProgress } from "@/hooks/useHskProgress";
 
 const StudyLevels = () => {
   const navigate = useNavigate();
+  const { getLevelProgress } = useHskProgress();
 
   const renderCard = (l: typeof hskLevels[0]) => {
     const locked = !l.unlocked;
+    const course = getCourse(l.level as number);
+    const allLessonIds = course?.weeks.flatMap((w) => w.lessons.map((ls) => ls.id)) ?? [];
+    const prog = getLevelProgress(allLessonIds);
+    const hasCourse = !!course;
+
     return (
-      <div key={String(l.level)} className={`bg-card rounded-2xl border border-border p-5 relative transition-all duration-300 ${locked ? "opacity-50" : "hover:shadow-xl hover:-translate-y-1 hover:border-primary/40 cursor-pointer"}`}>
+      <div
+        key={String(l.level)}
+        onClick={() => !locked && hasCourse && navigate(`/study/hsk/${l.level}`)}
+        className={`bg-card rounded-2xl border border-border p-5 relative transition-all duration-300 ${locked ? "opacity-50" : "hover:shadow-xl hover:-translate-y-1 hover:border-primary/40 cursor-pointer"}`}
+      >
         {locked && <div className="absolute inset-0 flex items-center justify-center z-10"><Lock size={24} className="text-muted-foreground" /></div>}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <span className="text-white text-xs font-bold px-2.5 py-0.5 rounded-full" style={{ backgroundColor: l.color }}>HSK {l.level}</span>
+          {hasCourse && !locked && <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary">Giáo trình ✨</span>}
           {locked && <span className="text-xs text-muted-foreground">Plus plan</span>}
         </div>
         <p className="text-sm text-muted-foreground mt-2">{l.words.toLocaleString()} từ</p>
-        <ProgressBar value={l.progress} color={l.color} className="mt-3" />
+        {hasCourse && (
+          <div className="flex items-center gap-3 mt-1.5 text-[11px] text-muted-foreground">
+            <span className="flex items-center gap-1"><Calendar size={11} /> {course.totalWeeks} tuần</span>
+            <span className="flex items-center gap-1"><BookOpen size={11} /> {allLessonIds.length} bài</span>
+          </div>
+        )}
+        <div className="h-2 rounded-full bg-muted mt-3 overflow-hidden">
+          <div className="h-full rounded-full transition-all duration-500" style={{ backgroundColor: l.color, width: `${hasCourse ? prog.percent : l.progress}%` }} />
+        </div>
         <div className="flex items-center justify-between mt-2">
-          <span className="text-xs text-muted-foreground">{l.progress}%</span>
+          <span className="text-xs text-muted-foreground">{hasCourse ? `${prog.done}/${prog.total} bài` : `${l.progress}%`}</span>
           {!locked && (
-            <button onClick={() => navigate("/study/flashcard")} className="text-xs font-semibold text-primary">Học tiếp →</button>
+            <span className="text-xs font-semibold text-primary">{hasCourse ? "Vào học →" : "Học tiếp →"}</span>
           )}
         </div>
       </div>
