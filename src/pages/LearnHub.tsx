@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { BookOpen, Type, Layers, PenTool, MessageCircle, Map, Gamepad2, Headphones, GraduationCap, ChevronRight, Lock, Sparkles, CheckCircle2 } from "lucide-react";
+import { BookOpen, Type, Layers, PenTool, MessageCircle, Map, Gamepad2, Headphones, GraduationCap, ChevronRight, Lock, Sparkles, CheckCircle2, FolderHeart } from "lucide-react";
 import { useBeginnerProgress } from "@/hooks/useBeginnerProgress";
+import DailyWordsCard from "@/components/shared/DailyWordsCard";
 
 const beginnerSteps = [
   { icon: Type, label: "Học Pinyin", desc: "Thanh điệu, phụ âm, nguyên âm", path: "/learn/pinyin", color: "text-primary" },
@@ -14,6 +15,7 @@ const advancedSections = [
   {
     title: "Lộ trình học 📚",
     items: [
+      { icon: FolderHeart, label: "Học theo chủ đề", desc: "Gia đình, đồ ăn, du lịch... 8 chủ đề", path: "/learn/topics", color: "text-primary", badge: "Mới ✨" },
       { icon: BookOpen, label: "Flashcard thông minh", desc: "SRS ôn tập theo chu kỳ", path: "/study", color: "text-primary" },
       { icon: GraduationCap, label: "Ngữ pháp", desc: "Cấu trúc câu theo cấp độ", path: "/learn/grammar", color: "text-warning" },
       { icon: MessageCircle, label: "Tình huống thực tế", desc: "Nhà hàng, du lịch, mua sắm...", path: "/learn/scenarios", color: "text-success" },
@@ -116,6 +118,9 @@ const LearnHub = () => {
             })}
           </div>
         </motion.div>
+
+        {/* Daily 5 words widget — always available */}
+        <DailyWordsCard />
 
         {/* Advanced Sections — locked/unlocked */}
         {advancedSections.map((section, si) => (
