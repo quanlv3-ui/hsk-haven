@@ -1,5 +1,6 @@
 import { achievements } from "@/data/mockData";
 
+
 const Achievements = () => {
   const unlocked = achievements.filter((a) => a.unlocked).length;
 
