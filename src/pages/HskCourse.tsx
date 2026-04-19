@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Lock, Trophy } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Lock, Trophy, Sparkles, MessagesSquare, Compass, Rocket, GraduationCap, Star, type LucideIcon } from "lucide-react";
+
+const weekIcons: LucideIcon[] = [Sparkles, MessagesSquare, Compass, Rocket, GraduationCap, Star];
 import { getCourse } from "@/data/hskCourseData";
 import { useHskProgress } from "@/hooks/useHskProgress";
 
