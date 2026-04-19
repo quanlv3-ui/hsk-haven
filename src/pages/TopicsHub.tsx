@@ -73,10 +73,20 @@ const TopicsHub = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: 0.06 + i * 0.04, ease: [0.16, 1, 0.3, 1] }}
                 onClick={() => navigate(`/learn/topics/${t.id}`)}
+            const Icon = topicIcons[t.id];
+            return (
+              <motion.button
+                key={t.id}
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.06 + i * 0.04, ease: [0.16, 1, 0.3, 1] }}
+                onClick={() => navigate(`/learn/topics/${t.id}`)}
                 className={`relative ${t.color} rounded-2xl border border-border p-4 text-left hover:shadow-xl hover:-translate-y-1.5 hover:border-primary/40 active:scale-[0.98] transition-all duration-300 group overflow-hidden`}
               >
                 <div className="flex items-start gap-3">
-                  <div className="text-3xl group-hover:scale-110 transition-transform duration-300">{t.emoji}</div>
+                  <div className="w-11 h-11 rounded-xl bg-background/70 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    {Icon ? <Icon size={22} className="text-primary" /> : <span className="text-2xl">{t.emoji}</span>}
+                  </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-base font-bold text-foreground">{t.name}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">{t.desc}</p>
