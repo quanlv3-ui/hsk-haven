@@ -1,8 +1,31 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Lock, Trophy, Sparkles, MessagesSquare, Compass, Rocket, GraduationCap, Star, type LucideIcon } from "lucide-react";
+import {
+  ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Lock, Trophy,
+  MessagesSquare, Hash, Users, UtensilsCrossed, Clock, Heart, Bike,
+  Stethoscope, Plane, GraduationCap, Briefcase, CloudSun, PartyPopper,
+  Smartphone, Sparkles, type LucideIcon,
+} from "lucide-react";
 
-const weekIcons: LucideIcon[] = [Sparkles, MessagesSquare, Compass, Rocket, GraduationCap, Star];
+// Map week title keywords → contextual icon
+const getWeekIcon = (title: string): LucideIcon => {
+  const t = title.toLowerCase();
+  if (t.includes("chào") || t.includes("bản thân")) return MessagesSquare;
+  if (t.includes("số") || t.includes("tuổi")) return Hash;
+  if (t.includes("gia đình") || t.includes("bạn")) return Users;
+  if (t.includes("ăn") || t.includes("mua sắm")) return UtensilsCrossed;
+  if (t.includes("thời gian") || t.includes("lịch")) return Clock;
+  if (t.includes("sở thích") || t.includes("hoạt động")) return Heart;
+  if (t.includes("đi lại") || t.includes("phương hướng")) return Bike;
+  if (t.includes("sức khỏe") || t.includes("cảm xúc")) return Stethoscope;
+  if (t.includes("du lịch") || t.includes("khách sạn")) return Plane;
+  if (t.includes("học tập") || t.includes("trường")) return GraduationCap;
+  if (t.includes("công việc") || t.includes("văn phòng")) return Briefcase;
+  if (t.includes("thời tiết") || t.includes("môi trường")) return CloudSun;
+  if (t.includes("văn hóa") || t.includes("lễ hội")) return PartyPopper;
+  if (t.includes("internet") || t.includes("công nghệ")) return Smartphone;
+  return Sparkles;
+};
 import { getCourse } from "@/data/hskCourseData";
 import { useHskProgress } from "@/hooks/useHskProgress";
 
