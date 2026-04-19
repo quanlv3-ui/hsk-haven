@@ -66,13 +66,6 @@ const TopicsHub = () => {
           {topics.map((t, i) => {
             const stats = getTopicStats(t.id, t.words.length);
             const completed = stats.percent === 100 && stats.quizScore !== undefined;
-            return (
-              <motion.button
-                key={t.id}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.06 + i * 0.04, ease: [0.16, 1, 0.3, 1] }}
-                onClick={() => navigate(`/learn/topics/${t.id}`)}
             const Icon = topicIcons[t.id];
             return (
               <motion.button
