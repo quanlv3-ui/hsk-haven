@@ -1,9 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ChevronRight, Bookmark } from "lucide-react";
+import { ArrowLeft, ChevronRight, Bookmark, Users, UtensilsCrossed, Plane, Briefcase, ShoppingBag, CloudSun, HeartPulse, Hash, type LucideIcon } from "lucide-react";
 import { topics } from "@/data/topicsData";
 import { useTopicProgress } from "@/hooks/useTopicProgress";
 import { useBookmarks } from "@/hooks/useBookmarks";
+
+const topicIcons: Record<string, LucideIcon> = {
+  family: Users,
+  food: UtensilsCrossed,
+  travel: Plane,
+  work: Briefcase,
+  shopping: ShoppingBag,
+  weather: CloudSun,
+  body: HeartPulse,
+  numbers: Hash,
+};
 
 const TopicsHub = () => {
   const navigate = useNavigate();
@@ -55,6 +66,7 @@ const TopicsHub = () => {
           {topics.map((t, i) => {
             const stats = getTopicStats(t.id, t.words.length);
             const completed = stats.percent === 100 && stats.quizScore !== undefined;
+            const Icon = topicIcons[t.id];
             return (
               <motion.button
                 key={t.id}
@@ -65,7 +77,9 @@ const TopicsHub = () => {
                 className={`relative ${t.color} rounded-2xl border border-border p-4 text-left hover:shadow-xl hover:-translate-y-1.5 hover:border-primary/40 active:scale-[0.98] transition-all duration-300 group overflow-hidden`}
               >
                 <div className="flex items-start gap-3">
-                  <div className="text-3xl group-hover:scale-110 transition-transform duration-300">{t.emoji}</div>
+                  <div className="w-11 h-11 rounded-xl bg-background/70 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+                    {Icon ? <Icon size={22} className="text-primary" /> : <span className="text-2xl">{t.emoji}</span>}
+                  </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-base font-bold text-foreground">{t.name}</p>
                     <p className="text-xs text-muted-foreground mt-0.5">{t.desc}</p>

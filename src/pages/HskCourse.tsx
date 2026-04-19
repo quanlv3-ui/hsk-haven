@@ -1,6 +1,8 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Lock, Trophy } from "lucide-react";
+import { ArrowLeft, BookOpen, CheckCircle2, ChevronRight, Lock, Trophy, Sparkles, MessagesSquare, Compass, Rocket, GraduationCap, Star, type LucideIcon } from "lucide-react";
+
+const weekIcons: LucideIcon[] = [Sparkles, MessagesSquare, Compass, Rocket, GraduationCap, Star];
 import { getCourse } from "@/data/hskCourseData";
 import { useHskProgress } from "@/hooks/useHskProgress";
 
@@ -79,13 +81,18 @@ const HskCourse = () => {
               >
                 <div className="p-4 border-b border-border bg-muted/30">
                   <div className="flex items-center justify-between gap-2">
-                    <div className="flex items-center gap-2 min-w-0">
-                      <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-primary/15 text-primary flex-shrink-0">Tuần {week.week}</span>
-                      <h2 className="text-sm font-bold text-foreground truncate">{week.title}</h2>
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${course.color}1f`, color: course.color }}>
+                        {(() => { const WIcon = weekIcons[wi % weekIcons.length]; return <WIcon size={18} />; })()}
+                      </div>
+                      <div className="min-w-0">
+                        <span className="text-[11px] font-bold text-muted-foreground">Tuần {week.week}</span>
+                        <h2 className="text-sm font-bold text-foreground truncate">{week.title}</h2>
+                      </div>
                     </div>
                     {!weekUnlocked && <Lock size={14} className="text-muted-foreground flex-shrink-0" />}
                   </div>
-                  <p className="text-xs text-muted-foreground mt-1">🎯 {week.goal}</p>
+                  <p className="text-xs text-muted-foreground mt-1.5">🎯 {week.goal}</p>
                   <div className="flex items-center gap-2 mt-2">
                     <div className="flex-1 h-1.5 rounded-full bg-muted overflow-hidden">
                       <div className="h-full rounded-full bg-primary transition-all duration-500" style={{ width: `${weekProgress.percent}%` }} />
