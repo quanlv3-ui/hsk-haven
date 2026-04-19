@@ -1,9 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowLeft, ChevronRight, Bookmark } from "lucide-react";
+import { ArrowLeft, ChevronRight, Bookmark, Users, UtensilsCrossed, Plane, Briefcase, ShoppingBag, CloudSun, HeartPulse, Hash, type LucideIcon } from "lucide-react";
 import { topics } from "@/data/topicsData";
 import { useTopicProgress } from "@/hooks/useTopicProgress";
 import { useBookmarks } from "@/hooks/useBookmarks";
+
+const topicIcons: Record<string, LucideIcon> = {
+  family: Users,
+  food: UtensilsCrossed,
+  travel: Plane,
+  work: Briefcase,
+  shopping: ShoppingBag,
+  weather: CloudSun,
+  body: HeartPulse,
+  numbers: Hash,
+};
 
 const TopicsHub = () => {
   const navigate = useNavigate();
