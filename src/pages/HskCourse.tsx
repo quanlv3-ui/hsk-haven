@@ -106,7 +106,7 @@ const HskCourse = () => {
                   <div className="flex items-center justify-between gap-2">
                     <div className="flex items-center gap-2.5 min-w-0">
                       <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0" style={{ backgroundColor: `${course.color}1f`, color: course.color }}>
-                        {(() => { const WIcon = weekIcons[wi % weekIcons.length]; return <WIcon size={18} />; })()}
+                        {(() => { const WIcon = getWeekIcon(week.title); return <WIcon size={18} />; })()}
                       </div>
                       <div className="min-w-0">
                         <span className="text-[11px] font-bold text-muted-foreground">Tuần {week.week}</span>
