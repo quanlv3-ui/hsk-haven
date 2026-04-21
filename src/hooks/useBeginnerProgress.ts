@@ -17,8 +17,11 @@ export const useBeginnerProgress = () => {
 
   const completeStep = useCallback((stepIndex: number) => {
     setCompletedSteps((prev) => {
-      if (prev.includes(stepIndex)) return prev;
-      const next = [...prev, stepIndex];
+      // Mark this step AND all previous steps as completed
+      const set = new Set(prev);
+      for (let i = 0; i <= stepIndex; i++) set.add(i);
+      const next = Array.from(set).sort((a, b) => a - b);
+      if (next.length === prev.length) return prev;
       localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
       return next;
     });
