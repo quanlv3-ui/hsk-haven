@@ -313,7 +313,7 @@ const WritingPractice = () => {
 
   const handleComplete = () => {
     completeStep(2); // step index 2 = writing
-    navigate("/learn");
+    navigate("/learn/basic-vocab");
   };
 
   return (
@@ -435,17 +435,26 @@ const WritingPractice = () => {
         </div>
 
         {/* Complete */}
-        {validated.size === characters.length && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center pt-2"
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center pt-2 space-y-2"
+        >
+          <button
+            onClick={handleComplete}
+            className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300"
           >
-            <button onClick={handleComplete} className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3.5 rounded-2xl font-semibold text-sm shadow-lg hover:shadow-xl hover:-translate-y-1 active:scale-95 transition-all duration-300">
-              <Sparkles size={18} /> Hoàn thành bước 3
-            </button>
-          </motion.div>
-        )}
+            <Sparkles size={18} />
+            {validated.size === characters.length
+              ? "Hoàn thành bước 3 → Sang bước 4"
+              : `Hoàn thành & sang bước 4 (${validated.size}/${characters.length})`}
+          </button>
+          {validated.size < characters.length && (
+            <p className="text-xs text-muted-foreground">
+              Bạn có thể chuyển sang bước 4 bất cứ lúc nào
+            </p>
+          )}
+        </motion.div>
       </div>
     </div>
   );
